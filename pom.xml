@@ -4,19 +4,34 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.codecool.shop</groupId>
-    <artifactId>codecoolshop</artifactId>
+    <groupId>com.codecool.foodswap</groupId>
+    <artifactId>foodswap</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
+    <!--<properties>-->
+        <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+        <!--<version.hibernate.validator>5.1.2.Final</version.hibernate.validator>-->
+        <!--<slf4jVersion>1.7.25</slf4jVersion>-->
+    <!--</properties>-->
+
     <properties>
+        <version.java>1.7</version.java>
+        <version.eclipselink>2.6.2</version.eclipselink>
+        <version.hibernate.validator>5.1.2.Final</version.hibernate.validator>
+        <version.el>3.0.1-b03</version.el>
+        <version.mysql>5.1.21</version.mysql>
+        <version.postgres>42.1.1</version.postgres>
+        <version.maven.compiler.plugin>3.1</version.maven.compiler.plugin>
+        <version.maven.processor.plugin>2.2.4</version.maven.processor.plugin>
+        <version.junit>4.11</version.junit>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <slf4jVersion>1.7.25</slf4jVersion>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <build>
-        <finalName>codecoolshop</finalName>
-        <sourceDirectory>src/main/java</sourceDirectory>
+        <finalName>foodswap</finalName>
+        <sourceDirectory>src</sourceDirectory>
 
         <plugins>
             <plugin>
@@ -77,6 +92,11 @@
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>2.0.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.2.10.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate.validator</groupId>

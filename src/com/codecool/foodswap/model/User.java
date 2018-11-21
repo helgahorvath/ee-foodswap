@@ -1,5 +1,8 @@
 package com.codecool.foodswap.model;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -27,6 +30,8 @@ public class User {
     public void addDietType(DietType dietType) {
 
     }
+
+
 
 
 }
