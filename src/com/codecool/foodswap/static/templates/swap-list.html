@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of foods</title>
+</head>
+<body>
+<form action="/list">
+    <label for="f-name">The food you offer</label><br>
+    <input type="text" id="f-name">
+    <p><label for="f-diet">Diet types</label></p>
+    <ul id="f-diet">
+        <li><input type="checkbox" name="vegan">Vegan</li>
+        <li><input type="checkbox" name="gl-free">Gluten-free</li>
+        <li><input type="checkbox" name="sugar-free">Sugar-free</li>
+    </ul>
+    <label for="f-desc">Food description</label><br>
+    <textarea rows="5" cols="50" id="f-desc"></textarea><br>
+    <label for="f-img">Image url</label><br>
+    <input type="text" id="f-img"><br><br>
+
+    <button type="submit">Request swap</button>
+</form>
+</body>
+</html>
