@@ -6,4 +6,5 @@ public enum Rank {
     CHEF,
     MASTER_CHEF,
     GORDON_RAMSAY,
+
 }
