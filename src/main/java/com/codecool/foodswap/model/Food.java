@@ -10,13 +10,17 @@ public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long foodId;
+    @Column(name = "name")
     private String name;
+    @Column(name = "picture")
     private String foodIMG;
     @Enumerated
     @ElementCollection(targetClass = DietType.class)
     private List<DietType> dietTypes;
     private LocalDate date;
+    @Column(name = "expiration_date")
     private LocalDate expDate;
+    @Column(name = "description")
     private String Description;
     @OneToOne
     private User owner;
