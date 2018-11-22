@@ -11,13 +11,19 @@ public class Food {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long foodId;
+    @Column(name = "name")
     private String name;
+    @Column(name = "picture")
     private String foodIMG;
-
+    @Column(name = "diet_type")
     private List<DietType> dietTypes;
+    @Column(name = "date")
     private LocalDate date;
+    @Column(name = "expiration_date")
     private LocalDate expDate;
+    @Column(name = "description")
     private String Description;
+    @Column(name = "owner")
     private User owner;
 
     public Food(long foodId, String name, String foodIMG, List<DietType> dietTypes, String description) {
