@@ -16,11 +16,17 @@ public class GroupDaoImpl extends EntityManagerJPA implements GroupDao{
 
     @Override
     public void add(Group group) {
-        
+        transaction.begin();
+        em.persist(group);
+        transaction.commit();
+        em.clear();
     }
 
     @Override
     public void remove(Group group) {
-
+        transaction.begin();
+        em.remove(group);
+        transaction.commit();
+        em.clear();
     }
 }

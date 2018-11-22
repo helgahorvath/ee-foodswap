@@ -4,13 +4,13 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Entity
+@Entity(name= "gruppen")
 public class Group {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int groupId;
-    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(unique = true, nullable = false)
     private String name;
     @ManyToMany(mappedBy = "groupList")
     private List<User> userList;
