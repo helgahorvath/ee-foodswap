@@ -7,10 +7,10 @@ import javax.persistence.Persistence;
 
 public abstract class EntityManagerJPA {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("foodswap");
-    protected EntityManager em;
-    protected EntityTransaction transaction;
+    EntityManager em;
+    EntityTransaction transaction;
 
-    public EntityManagerJPA(){
+    EntityManagerJPA(){
         em = emf.createEntityManager();
         transaction = em.getTransaction();
     }
