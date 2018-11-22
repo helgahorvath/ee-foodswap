@@ -12,12 +12,14 @@ public class Food {
     private long foodId;
     private String name;
     private String foodIMG;
-    /*@Enumerated
-    private List<DietType> dietTypes;*/
+    @Enumerated
+    @ElementCollection(targetClass = DietType.class)
+    private List<DietType> dietTypes;
     private LocalDate date;
     private LocalDate expDate;
     private String Description;
-   /* private User owner*/;
+    @OneToOne
+    private User owner;
 
     public Food(){}
 
