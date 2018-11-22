@@ -20,7 +20,7 @@ public class MainController extends HttpServlet {
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         context = new WebContext(req, resp, req.getServletContext());
-        engine.process("log-reg.html", context, resp.getWriter());
+        engine.process("index.html", context, resp.getWriter());
     }
 
 }
