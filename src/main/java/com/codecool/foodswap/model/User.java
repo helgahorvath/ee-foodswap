@@ -1,30 +1,37 @@
 package com.codecool.foodswap.model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
+@Entity
 public class User {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private String password;
+    @OneToMany
     private List<DietType> dietTypes = new ArrayList<>();
     private String userImg;
     private int upVotes;
     private Rank rank = Rank.KITCHEN_HELPER;
     private List<Food> foodsOffered = new ArrayList<>();
-    private static AtomicInteger nextId = new AtomicInteger();
+    @ManyToMany(mappedBy = "userList")
     private List<Group> groupList = new ArrayList<>();
 
 
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.id = nextId.incrementAndGet();
+    }
+
+    public User(){
+
     }
 
     public void addDietType(DietType dietType) {
@@ -41,5 +48,9 @@ public class User {
 
     public void joinGroup(Group group) {
         this.groupList.add(group);
+    }
+
+    public int getId() {
+        return id;
     }
 }
