@@ -29,14 +29,15 @@ public class Food {
 
     public Food(){}
 
-    public Food(long foodId, String name, String foodIMG, List<DietType> dietTypes, String description) {
-        this.foodId = foodId;
+    public Food(String name, String foodIMG, List<DietType> dietTypes, String description, Group container_group) {
         this.name = name;
         this.foodIMG = foodIMG;
        /* this.dietTypes = dietTypes;*/
         this.date = getLocalDate();
         this.expDate = date.plusDays(2);
         this.Description = description;
+        this.dietTypes = dietTypes;
+        this.container_group = container_group;
     }
 
     public static LocalDate getLocalDate() {
@@ -97,6 +98,21 @@ public class Food {
 
     public void setDescription(String description) {
         Description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "foodId=" + foodId +
+                ", name='" + name + '\'' +
+                ", foodIMG='" + foodIMG + '\'' +
+                ", dietTypes=" + dietTypes +
+                ", date=" + date +
+                ", expDate=" + expDate +
+                ", Description='" + Description + '\'' +
+                ", owner=" + owner +
+                ", container_group=" + container_group +
+                '}';
     }
 
    /* public User getOwner() {

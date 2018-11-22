@@ -8,4 +8,6 @@ public interface GroupDao {
     void add(Group group);
     void remove(Group group);
     void addMemeber(User user);
+    Group findByName(String name);
+
 }

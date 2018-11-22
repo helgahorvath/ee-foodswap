@@ -35,4 +35,11 @@ public class GroupDaoImpl extends EntityManagerJPA implements GroupDao{
     public void addMemeber(User user) {
 
     }
+
+    @Override
+    public Group findByName(String name) {
+        return em.createQuery(
+                "SELECT g FROM groups g WHERE g.name = ?", Group.class)
+                .setParameter(0, name).getSingleResult();
+    }
 }
