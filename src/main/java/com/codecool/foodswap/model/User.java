@@ -46,9 +46,6 @@ public class User {
         this.rank = rank;
     }
 
-    public void offerFood(String name, String foodImg, DietType dietType, String description) {
-        this.foodsOffered.add(new Food());
-    }
 
     public void joinGroup(Group group) {
         this.groupList.add(group);
