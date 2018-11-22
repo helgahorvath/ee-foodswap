@@ -1,10 +1,11 @@
 package com.codecool.foodswap.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Entity(name= "gruppen")
+@Entity(name= "groups")
 public class Group {
 
     @Id
@@ -12,10 +13,12 @@ public class Group {
     private int id;
     @Column(unique = true, nullable = false)
     private String name;
+
     @ManyToMany(mappedBy = "groupList")
-    private List<User> userList;
+    private List<User> userList= new ArrayList<>();
+
     @OneToMany(mappedBy = "container_group")
-    private List<Food> foods;
+    private List<Food> foods = new ArrayList<>();
 
     public Group(String name) {
         this.name = name;
@@ -34,4 +37,13 @@ public class Group {
             }
         }
     }
+
+   @Override
+   public String toString() {
+       return "Group{" +
+               "id=" + id +
+               ", name='" + name + '\'' +
+               ", userList=" + userList +
+               '}';
+   }
 }
