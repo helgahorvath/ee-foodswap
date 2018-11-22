@@ -1,12 +1,16 @@
 package com.codecool.foodswap.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 public class Food {
 
+    @Id
+    @Column
     private long foodId;
     private String name;
     private String foodIMG;
