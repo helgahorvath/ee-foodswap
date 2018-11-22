@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Entity(name = "users")
 public class User {
@@ -19,8 +18,9 @@ public class User {
     @Column(unique = true)
     private String email;
     private String password;
-    /*@Enumerated(EnumType.STRING)
-    private List<DietType> dietTypes = new ArrayList<>();*/
+    @Enumerated
+    @ElementCollection(targetClass = DietType.class)
+    private List<DietType> dietTypes = new ArrayList<>();
     private String userImg;
     private int upVotes;
     private Rank rank = Rank.KITCHEN_HELPER;
