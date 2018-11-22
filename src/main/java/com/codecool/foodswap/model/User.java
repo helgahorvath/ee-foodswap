@@ -9,23 +9,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Entity
+@Entity(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String firstName;
     private String lastName;
     @Column(unique = true)
     private String email;
     private String password;
-    @OneToMany
-    private List<DietType> dietTypes = new ArrayList<>();
+    /*@Enumerated(EnumType.STRING)
+    private List<DietType> dietTypes = new ArrayList<>();*/
     private String userImg;
     private int upVotes;
     private Rank rank = Rank.KITCHEN_HELPER;
-    private List<Food> foodsOffered = new ArrayList<>();
-    @ManyToMany(mappedBy = "userList")
+   /* private List<Food> foodsOffered = new ArrayList<>();*/
+    @ManyToMany
     private List<Group> groupList = new ArrayList<>();
 
 

@@ -8,23 +8,24 @@ import java.util.List;
 public class Food {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long foodId;
     private String name;
     private String foodIMG;
-
-    private List<DietType> dietTypes;
+    /*@Enumerated
+    private List<DietType> dietTypes;*/
     private LocalDate date;
     private LocalDate expDate;
     private String Description;
-    private User owner;
+   /* private User owner*/;
+
+    public Food(){}
 
     public Food(long foodId, String name, String foodIMG, List<DietType> dietTypes, String description) {
         this.foodId = foodId;
         this.name = name;
         this.foodIMG = foodIMG;
-        this.dietTypes = dietTypes;
+       /* this.dietTypes = dietTypes;*/
         this.date = getLocalDate();
         this.expDate = date.plusDays(2);
         this.Description = description;
@@ -58,13 +59,13 @@ public class Food {
         this.foodIMG = foodIMG;
     }
 
-    public List<DietType> getDietTypes() {
+/*    public List<DietType> getDietTypes() {
         return dietTypes;
     }
 
     public void setDietTypes(List<DietType> dietTypes) {
         this.dietTypes = dietTypes;
-    }
+    }*/
 
     public LocalDate getDate() {
         return date;
@@ -90,11 +91,11 @@ public class Food {
         Description = description;
     }
 
-    public User getOwner() {
+   /* public User getOwner() {
         return owner;
     }
 
     public void setOwner(User owner) {
         this.owner = owner;
-    }
+    }*/
 }
