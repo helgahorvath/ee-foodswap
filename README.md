@@ -1,1 +1,1 @@
-# ee-foodswap
+# ee-com.codecool.foodswap
