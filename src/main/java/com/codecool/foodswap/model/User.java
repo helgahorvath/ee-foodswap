@@ -29,11 +29,6 @@ public class User {
     private List<Group> groupList = new ArrayList<>();
 
 
-    public User(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
     public User(){
 
     }
@@ -54,4 +49,21 @@ public class User {
     public int getId() {
         return id;
     }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }

@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login and registration page</title>
+    <title>Registration page</title>
 </head>
 <body>
 <h2>Please register</h2>
-<div class="reg">
-    <label for="reg-firstname">First name</label>
-    <input name="reg-firstname" type="text" id="reg-firstname">
-    <label for="reg-lastname">Last name</label>
-    <input type="text" name="reg-lastname" id="reg-lastname">
-    <label for="reg-email">E-mail</label>
-    <input name="reg-email" type="email" id="reg-email">
-    <label for="reg-pw">Password</label>
-    <input name="reg-pw" type="email" id="reg-pw">
-</div>
-<div>
-    <button name="registration-button" value="" type="submit">Register</button>
+<div class="container">
+    <form action="/register" method="post">
+        <div class="row">
+            <div class="col-50">
+                <h3 class="mb-3 text-center">Registration</h3>
+                <label for="first_name"><i class="fa fa-user"></i>First name</label>
+                <input type="text" id="first_name" name="first_name" placeholder="John">
+                <label for="last_name"><i class="fa fa-user"></i>Last name</label>
+                <input type="text" id="last_name" name="last_name" placeholder="Doe">
+                <label for="email"><i class="fa fa-envelope"></i>E-mail address</label>
+                <input type="text" id="email" name="email" placeholder="john@example.com">
+                <label for="pw"><i class="fa fa-address-card-o"></i>Password</label>
+                <input type="password" id="pw" name="password" placeholder="*******">
+                <label for="pw2"><i class="fa fa-address-card-o"></i>Confirm password</label>
+                <input type="password" id="pw2" name="password2" placeholder="*******">
+                <h4 class="error" th:if="${!#arrays.isEmpty(errorMessages)}" th:each="errorMessage : ${errorMessages}" th:text="${errorMessage}"></h4>
+            </div>
+        </div>
+        <input type="submit" value="Register" class="btn">
+    </form>
 </div>
 
 </body>
