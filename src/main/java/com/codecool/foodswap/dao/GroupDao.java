@@ -6,5 +6,6 @@ public interface GroupDao {
 
     void add(Group group);
     void remove(Group group);
+    Group findByName(String name);
 
 }
