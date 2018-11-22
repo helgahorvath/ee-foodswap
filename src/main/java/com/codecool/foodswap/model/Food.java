@@ -14,21 +14,18 @@ public class Food {
     private String name;
     @Column(name = "picture")
     private String foodIMG;
-    /*@Enumerated
-    private List<DietType> dietTypes;*/
-    @Column(name = "diet_type")
+    @Enumerated
+    @ElementCollection(targetClass = DietType.class)
     private List<DietType> dietTypes;
-    @Column(name = "date")
     private LocalDate date;
     @Column(name = "expiration_date")
     private LocalDate expDate;
     @Column(name = "description")
     private String Description;
-   /* private User owner*/;
+    @OneToOne
+    private User owner;
 
     public Food(){}
-    @Column(name = "owner")
-    private User owner;
 
     public Food(long foodId, String name, String foodIMG, List<DietType> dietTypes, String description) {
         this.foodId = foodId;
