@@ -21,12 +21,12 @@ public class Group {
 
     public Group(){}
 
-    public void addUserToGroup(User user) {
+    public void addUserToGroup(com.codecool.foodswap.model.User user) {
         this.userList.add(user);
     }
 
-    public void removeUserFromGroup(User user){
-        for (User u: userList) {
+    public void removeUserFromGroup(com.codecool.foodswap.model.User user){
+        for (com.codecool.foodswap.model.User u: userList) {
             if(u.getId() == user.getId()){
                 userList.remove(u);
             }
