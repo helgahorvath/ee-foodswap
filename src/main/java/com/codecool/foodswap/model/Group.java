@@ -14,6 +14,8 @@ public class Group {
     private String name;
     @ManyToMany(mappedBy = "groupList")
     private List<User> userList;
+    @OneToMany(mappedBy = "container_group")
+    private List<Food> foods;
 
     public Group(String name) {
         this.name = name;

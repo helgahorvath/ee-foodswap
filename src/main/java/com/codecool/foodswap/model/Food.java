@@ -24,12 +24,12 @@ public class Food {
     private LocalDate expDate;
     @Column(name = "description")
     private String Description;
-   /* private User owner*/;
+    @OneToOne
+    private User owner;
+    @ManyToOne
+    private Group container_group;
 
     public Food(){}
-    @Column(name = "owner")
-    private User owner;
-
     public Food(long foodId, String name, String foodIMG, List<DietType> dietTypes, String description) {
         this.foodId = foodId;
         this.name = name;

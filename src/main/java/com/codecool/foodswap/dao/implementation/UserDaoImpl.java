@@ -10,10 +10,14 @@ public class UserDaoImpl extends EntityManagerJPA implements UserDao {
         transaction.begin();
         em.persist(user);
         transaction.commit();
+        em.clear();
     }
 
     @Override
     public void remove(User user) {
-
+        transaction.begin();
+        em.remove(user);
+        transaction.commit();
+        em.clear();
     }
 }
