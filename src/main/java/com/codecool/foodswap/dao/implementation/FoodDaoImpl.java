@@ -9,6 +9,15 @@ import java.util.List;
 
 public class FoodDaoImpl extends EntityManagerJPA implements FoodDao {
 
+    private static FoodDaoImpl ourInstance = new FoodDaoImpl();
+
+    public static FoodDaoImpl getInstance() {
+        return ourInstance;
+    }
+
+    private FoodDaoImpl() {
+        super();
+    }
 
     @Override
     public void add(Food food) {

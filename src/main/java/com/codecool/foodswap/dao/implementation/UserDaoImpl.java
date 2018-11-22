@@ -4,7 +4,17 @@ import com.codecool.foodswap.dao.UserDao;
 import com.codecool.foodswap.model.User;
 
 public class UserDaoImpl extends EntityManagerJPA implements UserDao {
-    
+
+    private static UserDaoImpl ourInstance = new UserDaoImpl();
+
+    public static UserDaoImpl getInstance() {
+        return ourInstance;
+    }
+
+    private UserDaoImpl() {
+        super();
+    }
+
     @Override
     public void add(User user) {
         transaction.begin();
