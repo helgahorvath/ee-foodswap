@@ -24,6 +24,8 @@ public class Food {
     private String Description;
     @OneToOne
     private User owner;
+    @ManyToOne
+    private Group container_group;
 
     public Food(){}
 
