@@ -10,12 +10,12 @@ import java.util.List;
 
 @Entity(name = "users")
 public class User {
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String firstName;
     private String lastName;
     @Column(unique = true)
+    @Id
     private String email;
     private String password;
     @Enumerated
