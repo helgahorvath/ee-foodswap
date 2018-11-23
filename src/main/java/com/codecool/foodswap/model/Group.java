@@ -17,18 +17,11 @@ public class Group {
     @ManyToMany(mappedBy = "groupList")
     private List<User> userList= new ArrayList<>();
 
-    @OneToMany(mappedBy = "container_group")
-    private List<Food> foods = new ArrayList<>();
-
     public Group(String name) {
         this.name = name;
     }
 
     public Group(){}
-
-    public void addUserToGroup(User user) {
-        this.userList.add(user);
-    }
 
     public void removeUserFromGroup(User user){
         for (User u: userList) {
@@ -46,4 +39,12 @@ public class Group {
                ", userList=" + userList +
                '}';
    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> toAdd) {
+        this.userList = toAdd;
+    }
 }

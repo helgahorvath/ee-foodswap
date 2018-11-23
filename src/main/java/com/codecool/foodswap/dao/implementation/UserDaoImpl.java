@@ -37,6 +37,8 @@ public class UserDaoImpl extends EntityManagerJPA implements UserDao {
         em.clear();
     }
 
+
+
     @Override
     public int verifyUser(String email, String password) {
         List<User> users = em.createQuery(
@@ -47,4 +49,11 @@ public class UserDaoImpl extends EntityManagerJPA implements UserDao {
         }
     return 0;
     }
+
+    @Override
+    public void joinGroup(User user) {
+
+    }
+
+
 }

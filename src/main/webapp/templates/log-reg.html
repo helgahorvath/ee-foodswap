@@ -1,36 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  >
 <head>
+    <style>
+        body  {
+            background-image: url("/static/img/login.jpg");
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Login and registration page</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/style/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 </head>
 <body>
-<h1>Welcome to foodswap</h1>
-<h2>Please login or register</h2>
-<div class="reg">
-    <label for="reg-firstname">First name</label>
-    <input name="reg-firstname" type="text" id="reg-firstname">
-    <label for="reg-lastname">Last name</label>
-    <input type="text" name="reg-lastname" id="reg-lastname">
-    <label for="reg-email">E-mail</label>
-    <input name="reg-email" type="email" id="reg-email">
-    <label for="reg-pw">Password</label>
-    <input name="reg-pw" type="email" id="reg-pw">
-</div>
-<div>
-    <button name="registration-button" value="" type="submit">Register</button>
-</div>
-<div>
-    <p></p>
-    <label for="login-email">Email</label>
-    <input type="email" id="login-email">
-    <label for="login-pw">Password</label>
-    <input type="password" id="login-pw">
-</div>
-<div>
-    <button name="login-button" value="" type="submit">Login</button>
-</div>
+<div class="transparent">
+    <h1>Welcome to foodswap</h1>
+    <h2>Please login or register</h2>
+    <div class="outer">
+        <div class="inner">
+            <label for="reg-firstname">First name:</label><br>
+            <input name="reg-firstname" type="text" id="reg-firstname"><br>
+            <label for="reg-lastname">Last name:</label><br>
+            <input type="text" name="reg-lastname" id="reg-lastname"><br>
+            <label for="reg-email">E-mail:</label><br>
+            <input name="reg-email" type="email" id="reg-email"><br>
+            <label for="reg-pw">Password:</label><br>
+            <input name="reg-pw" type="email" id="reg-pw"><br>
+            <button class="button" name="registration-button" value="" type="submit">Register</button><br>
+        </div>
+    </div>
 
-
+    <div class="outer">
+        <div class="inner">
+            <p></p>
+            <form method="post" action="/">
+                <label for="login-email">Email:</label><br>
+                <input type="email" id="login-email" name="login-email"><br>
+                <label for="login-pw">Password:</label><br>
+                <input type="password" id="login-pw" name="login-pw"><br>
+                <button class="button" name="login-button" value="" type="submit">Login</button><br>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

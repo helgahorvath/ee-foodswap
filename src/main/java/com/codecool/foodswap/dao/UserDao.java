@@ -9,4 +9,5 @@ public interface UserDao {
     void add(User user);
     void remove(User user);
     int verifyUser(String email, String password);
+    void joinGroup(User user);
 }
