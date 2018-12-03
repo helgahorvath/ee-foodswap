@@ -10,4 +10,5 @@ public interface UserDao {
     void remove(User user);
     int verifyUser(String email, String password);
     void joinGroup(User user);
+    User getUserById(int Id);
 }

@@ -17,7 +17,6 @@ import java.io.IOException;
 public class CreateGroupServlet extends HttpServlet {
     private GroupDao groupDao = GroupDaoImpl.getInstance();
     private String name;
-    private String json;
 
     public CreateGroupServlet(String name) {
         this.name = name;

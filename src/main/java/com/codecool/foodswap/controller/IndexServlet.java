@@ -1,6 +1,5 @@
 package com.codecool.foodswap.controller;
 
-
 import com.codecool.foodswap.config.TemplateEngineUtil;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -27,6 +26,7 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         session = req.getSession();
         session.getAttribute("uId");
+        System.out.println(session.getAttribute("uId"));
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         context = new WebContext(req, resp, req.getServletContext());
        /* context.setVariable("foods", foodDao.getAllFoodByGroup(groupDao.findByName("My office")));*/

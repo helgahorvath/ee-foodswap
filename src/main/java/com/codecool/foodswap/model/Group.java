@@ -47,4 +47,12 @@ public class Group {
     public void setUserList(List<User> toAdd) {
         this.userList = toAdd;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
 }
