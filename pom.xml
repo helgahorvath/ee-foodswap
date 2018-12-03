@@ -148,5 +148,11 @@
             <artifactId>thymeleaf</artifactId>
             <version>3.0.10.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.19.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
