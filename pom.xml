@@ -45,7 +45,7 @@
 
     <build>
         <finalName>com.codecool.foodswap</finalName>
-        <sourceDirectory>src</sourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
 
         <plugins>
             <plugin>
@@ -75,6 +75,12 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160810</version>
+        </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
