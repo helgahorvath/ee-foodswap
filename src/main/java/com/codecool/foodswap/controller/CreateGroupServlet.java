@@ -1,8 +1,6 @@
 package com.codecool.foodswap.controller;
 
-import com.codecool.foodswap.dao.FoodDao;
 import com.codecool.foodswap.dao.GroupDao;
-import com.codecool.foodswap.dao.implementation.FoodDaoImpl;
 import com.codecool.foodswap.dao.implementation.GroupDaoImpl;
 import com.codecool.foodswap.model.Group;
 import org.json.JSONObject;
