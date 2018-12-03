@@ -12,6 +12,7 @@ public class Application implements ServletContextListener {
         ServletContext context = sce.getServletContext();
         context.addServlet("login", new LoginServlet("login")).addMapping("/");
         context.addServlet("index", new IndexServlet("index")).addMapping("/index");
+        context.addServlet("creategroup", new CreateGroupServlet("cr_group")).addMapping("/create_group");
     }
 
     @Override
