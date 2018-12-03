@@ -25,9 +25,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@WebServlet(urlPatterns = {"/"})
 public class LoginController extends HttpServlet {
-    private WebContext context;
+     private WebContext context;
+     private String name;
+
+    public LoginController(String name) {
+        this.name = name;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -57,7 +61,7 @@ public class LoginController extends HttpServlet {
         int uId = userDao.verifyUser(req.getParameter("login-email"), req.getParameter("login-pw"));
         if (req.getParameter("login-email") != null && uId > -1) {
             session.setAttribute("uId", uId);
-            resp.sendRedirect("/main");
+            resp.sendRedirect("/index");
         }
     }
 }
