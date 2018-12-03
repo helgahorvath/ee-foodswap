@@ -4,8 +4,8 @@ import com.codecool.foodswap.dao.GroupDao;
 import com.codecool.foodswap.model.Group;
 import com.codecool.foodswap.model.User;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class GroupDaoImpl extends EntityManagerJPA implements GroupDao{
     private static GroupDaoImpl ourInstance = new GroupDaoImpl();
@@ -23,6 +23,7 @@ public class GroupDaoImpl extends EntityManagerJPA implements GroupDao{
         transaction.begin();
         em.persist(group);
         transaction.commit();
+        em.close();
         em.clear();
     }
 
@@ -31,6 +32,7 @@ public class GroupDaoImpl extends EntityManagerJPA implements GroupDao{
         transaction.begin();
         em.remove(group);
         transaction.commit();
+        em.close();
         em.clear();
     }
 
@@ -43,11 +45,14 @@ public class GroupDaoImpl extends EntityManagerJPA implements GroupDao{
 
     @Override
     public void addUserToGroup(User user, Group group) {
-        List<User> toAdd = group.getUserList();
+        Set<User> toAdd = group.getUsers();
         toAdd.add(user);
-        group.setUserList(toAdd);
+        group.setUsers(toAdd);
         transaction.begin();
         em.persist(group);
         transaction.commit();
+        em.close();
+        em.clear();
+
     }
 }

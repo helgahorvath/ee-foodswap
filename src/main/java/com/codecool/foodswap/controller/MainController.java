@@ -32,4 +32,5 @@ public class MainController extends HttpServlet {
        /* context.setVariable("foods", foodDao.getAllFoodByGroup(groupDao.findByName("My office")));*/
         engine.process("swap-list.html", context, resp.getWriter());
     }
+
 }

@@ -45,7 +45,7 @@
 
     <build>
         <finalName>com.codecool.foodswap</finalName>
-        <sourceDirectory>src</sourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
 
         <plugins>
             <plugin>
