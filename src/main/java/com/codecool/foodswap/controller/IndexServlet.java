@@ -16,14 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class MainController extends HttpServlet {
+public class IndexServlet extends HttpServlet {
     private WebContext context;
     /*private FoodDaoImpl foodDao = FoodDaoImpl.getInstance();
     private GroupDaoImpl groupDao = GroupDaoImpl.getInstance();*/
     private HttpSession session;
     private String name;
 
-    public MainController(String name) {
+    public IndexServlet(String name) {
         this.name = name;
     }
 

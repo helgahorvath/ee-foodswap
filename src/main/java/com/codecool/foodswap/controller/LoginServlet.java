@@ -25,11 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class LoginController extends HttpServlet {
+public class LoginServlet extends HttpServlet {
      private WebContext context;
      private String name;
 
-    public LoginController(String name) {
+    public LoginServlet(String name) {
         this.name = name;
     }
 

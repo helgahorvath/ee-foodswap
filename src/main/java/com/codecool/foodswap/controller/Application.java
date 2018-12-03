@@ -10,8 +10,8 @@ public class Application implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext context = sce.getServletContext();
-        context.addServlet("login", new LoginController("login")).addMapping("/");
-        context.addServlet("index", new MainController("index")).addMapping("/index");
+        context.addServlet("login", new LoginServlet("login")).addMapping("/");
+        context.addServlet("index", new IndexServlet("index")).addMapping("/index");
     }
 
     @Override
