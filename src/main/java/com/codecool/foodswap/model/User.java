@@ -11,7 +11,7 @@ import java.util.List;
 @Entity(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String firstName;
     private String lastName;
@@ -24,10 +24,17 @@ public class User {
     private String userImg;
     private int upVotes;
     private Rank rank = Rank.KITCHEN_HELPER;
-    /* private List<Food> foodsOffered = new ArrayList<>();*/
-    @ManyToMany
+    private List<Food> foodsOffered = new ArrayList<>();
+    @ManyToMany(mappedBy = "userList")
     private List<Group> groupList = new ArrayList<>();
 
+
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
 
     public User(){
 
@@ -41,6 +48,9 @@ public class User {
         this.rank = rank;
     }
 
+    public void offerFood(String name, String foodImg, DietType dietType, String description) {
+        this.foodsOffered.add(new Food());
+    }
 
     public void joinGroup(Group group) {
         this.groupList.add(group);
