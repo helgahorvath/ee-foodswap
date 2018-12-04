@@ -43,13 +43,14 @@ public class LoginController extends HttpServlet {
         dt.add(DietType.GLUTENFREE);
         dt.add(DietType.LACTOSEFREE);
 
+
         User user = new User("Geri", "Kudo", "gery89@gmail.com", "1234");
         userDao.add(user);
         Group group = new Group("My office", user);
 
         groupDao.addUserToGroup(user, group);
 
-        //userDao.addDietTypes(user, dt);
+        userDao.addDietTypes(user, dt);
         groupDao.add(group);
         Food food = new Food("B+leves", "nincsimidzs", dt, "romolott", user);
         foodDao.add(food);

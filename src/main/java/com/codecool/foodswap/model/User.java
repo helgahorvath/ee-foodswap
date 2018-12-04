@@ -35,7 +35,7 @@ public class User {
     private int upVotes;
     private Rank rank = Rank.KITCHEN_HELPER;
     /* private List<Food> foodsOffered = new ArrayList<>();*/
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "users", cascade = CascadeType.PERSIST)
     private Set<Group> groups = new HashSet<>();
 
 

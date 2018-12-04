@@ -58,7 +58,6 @@ public class UserDaoImpl extends EntityManagerJPA implements UserDao {
         transaction.begin();
         em.persist(user);
         transaction.commit();
-        em.close();
         em.clear();
     }
 
@@ -68,7 +67,6 @@ public class UserDaoImpl extends EntityManagerJPA implements UserDao {
         transaction.begin();
         em.persist(user);
         transaction.commit();
-        em.close();
         em.clear();
     }
 
