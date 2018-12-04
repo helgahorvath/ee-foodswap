@@ -11,6 +11,7 @@ import com.codecool.foodswap.model.DietType;
 import com.codecool.foodswap.model.Food;
 import com.codecool.foodswap.model.Group;
 import com.codecool.foodswap.model.User;
+import org.json.JSONObject;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -20,14 +21,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class LoginServlet extends HttpServlet {
+     private GroupDao groupDao = GroupDaoImpl.getInstance();
+     private FoodDao foodDao = FoodDaoImpl.getInstance();
      private WebContext context;
      private String name;
+     private String jsonResp;
 
     public LoginServlet(String name) {
         this.name = name;
@@ -36,17 +41,11 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         UserDao userDao  = UserDaoImpl.getInstance();
-        GroupDao groupDao = GroupDaoImpl.getInstance();
-        FoodDao foodDao = FoodDaoImpl.getInstance();
-        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         context = new WebContext(req, resp, req.getServletContext());
-        engine.process("log-reg.html", context, resp.getWriter());
-
 
         List<DietType> dt = new ArrayList<>();
         dt.add(DietType.GLUTENFREE);
         dt.add(DietType.LACTOSEFREE);
-
 
         User user = new User("Geri", "Kudo", "gery89@gmail.com", "1234");
         userDao.add(user);
@@ -58,17 +57,34 @@ public class LoginServlet extends HttpServlet {
         groupDao.add(group);
         Food food = new Food("B+leves", "nincsimidzs", dt, "romolott", user);
         foodDao.add(food);
+
+        jsonResp = "{\"render:\" \" true\"}";
+        resp.getWriter().write(jsonResp);
+
     }
 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         HttpSession session = req.getSession();
+        StringBuffer jb = new StringBuffer();
+        String line;
+        try {
+            BufferedReader reader = req.getReader();
+            while ((line = reader.readLine()) != null)
+                jb.append(line);
+        } catch (Exception e) { /*report an error*/ }
+        JSONObject loginDetails = new JSONObject(jb.toString());
         UserDao userDao  = UserDaoImpl.getInstance();
-        int uId = userDao.verifyUser(req.getParameter("login-email"), req.getParameter("login-pw"));
-        if (req.getParameter("login-email") != null && uId > -1) {
+        int uId = userDao.verifyUser(loginDetails.getString("user_name"), loginDetails.getString("password"));
+        System.out.println(uId);
+        if (req.getParameter("login-email") != null && uId > 0) {
             session.setAttribute("uId", uId);
-            resp.sendRedirect("/index");
+            jsonResp = "{\"login:\" \" Successful\"}";
+            resp.getWriter().write(jsonResp);
+        } else {
+            jsonResp = "{\"login:\" \" Failed\"}";
+            resp.getWriter().write(jsonResp);
         }
     }
 }
