@@ -43,13 +43,12 @@ public class UserDaoImpl extends EntityManagerJPA implements UserDao {
 
     @Override
     public int verifyUser(String email, String password) {
-        List<User> users = em.createQuery(
+        Object singleResult = em.createQuery(
                 "SELECT u FROM users u WHERE u.email LIKE :email AND u.password = :password")
-                .setParameter("email", email).setParameter("password", password).getResultList();
-        for (User u: users) {
-            return u.getId();
-        }
-    return 0;
+                .setParameter("email", email).setParameter("password", password).getSingleResult();
+        User u = (User) singleResult;
+        if (u!= null) return u.getId();
+        return 0;
     }
 
     @Override

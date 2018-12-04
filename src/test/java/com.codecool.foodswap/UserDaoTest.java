@@ -41,13 +41,9 @@ public class UserDaoTest {
 
     @Test
     void testUserDaoRemoveUser() throws IOException {
-        List<User> usersInDB = userDaoImpl.getAllUser();
-
         User userFromTestDB1 = userDaoImpl.getUserById(1);
-        User userFromTestDB2 = userDaoImpl.getUserById(2);
-
-        userDaoImpl.remove(userFromTestDB2);
-        usersInDB = userDaoImpl.getAllUser();
+        userDaoImpl.remove(userFromTestDB1);
+        List<User> usersInDB = userDaoImpl.getAllUser();
 
         assertEquals(usersInDB.size(), 1);
     }
