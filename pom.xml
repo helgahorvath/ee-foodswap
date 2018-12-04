@@ -11,9 +11,9 @@
 
 
     <!--<properties>-->
-        <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
-        <!--<version.hibernate.validator>5.1.2.Final</version.hibernate.validator>-->
-        <!--<slf4jVersion>1.7.25</slf4jVersion>-->
+    <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+    <!--<version.hibernate.validator>5.1.2.Final</version.hibernate.validator>-->
+    <!--<slf4jVersion>1.7.25</slf4jVersion>-->
     <!--</properties>-->
 
     <repositories>
@@ -62,7 +62,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.2.0</version>
             </plugin>
-
+            
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
