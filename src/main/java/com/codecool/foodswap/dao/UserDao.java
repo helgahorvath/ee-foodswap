@@ -13,4 +13,5 @@ public interface UserDao {
     int verifyUser(String email, String password);
     void joinGroup(User user, Group group);
     void addDietTypes(User user, List<DietType> dietTypes);
+    User getUserById(int Id);
 }

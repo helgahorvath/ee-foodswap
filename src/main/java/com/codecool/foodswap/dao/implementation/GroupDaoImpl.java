@@ -38,10 +38,10 @@ public class GroupDaoImpl extends EntityManagerJPA implements GroupDao {
     }
 
     @Override
-    public Group findByName(String name) {
+    public List<Group> findByName(String name) {
         return em.createQuery(
-                "SELECT g FROM groups g WHERE g.name = :name", Group.class)
-                .setParameter("name", name).getSingleResult();
+                "SELECT g FROM groups g WHERE g.name LIKE :name", Group.class)
+                .setParameter("name", name).getResultList();
     }
 
     @Override
@@ -56,5 +56,12 @@ public class GroupDaoImpl extends EntityManagerJPA implements GroupDao {
         transaction.commit();
         em.clear();
 
+    }
+
+    @Override
+    public Group findById(int Id) {
+        return (Group) em.createQuery(
+                "SELECT g FROM groups g WHERE g.id = :id", Group.class)
+                .setParameter("id", Id).getSingleResult();
     }
 }

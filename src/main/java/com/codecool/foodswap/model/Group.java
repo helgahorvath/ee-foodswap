@@ -55,4 +55,12 @@ public class Group {
     public void setUsers(Set<User> toAdd) {
         this.users = toAdd;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
 }

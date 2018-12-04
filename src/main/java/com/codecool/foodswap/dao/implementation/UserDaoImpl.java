@@ -70,5 +70,13 @@ public class UserDaoImpl extends EntityManagerJPA implements UserDao {
         em.clear();
     }
 
+    @Override
+    public User getUserById(int Id) {
+        User user = em.createQuery(
+                "SELECT u FROM users u WHERE u.id = :id", User.class)
+                .setParameter("id", Id).getSingleResult();
+        return user;
+    }
+
 
 }
