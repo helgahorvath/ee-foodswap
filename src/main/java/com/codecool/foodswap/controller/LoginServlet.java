@@ -41,14 +41,21 @@ public class LoginServlet extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         context = new WebContext(req, resp, req.getServletContext());
         engine.process("log-reg.html", context, resp.getWriter());
-        User user = new User("Geri", "Kudo", "gery89@gmail.com", "1234");
-        userDao.add(user);
-        Group group = new Group("My office");
-        groupDao.addUserToGroup(user, group);
-        groupDao.add(group);
+
+
         List<DietType> dt = new ArrayList<>();
         dt.add(DietType.GLUTENFREE);
         dt.add(DietType.LACTOSEFREE);
+
+
+        User user = new User("Geri", "Kudo", "gery89@gmail.com", "1234");
+        userDao.add(user);
+        Group group = new Group("My office", user);
+
+        groupDao.addUserToGroup(user, group);
+
+        userDao.addDietTypes(user, dt);
+        groupDao.add(group);
         Food food = new Food("B+leves", "nincsimidzs", dt, "romolott", user);
         foodDao.add(food);
     }
