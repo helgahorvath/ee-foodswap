@@ -31,6 +31,7 @@ public class Group {
 
     public Group(){}
 
+
     public void removeUserFromGroup(User user){
         for (User u: users) {
             if(u.getId() == user.getId()){
