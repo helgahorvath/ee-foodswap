@@ -1,6 +1,8 @@
 package com.codecool.foodswap.dao.implementation;
 
 import com.codecool.foodswap.dao.UserDao;
+import com.codecool.foodswap.model.DietType;
+import com.codecool.foodswap.model.Group;
 import com.codecool.foodswap.model.User;
 
 import java.sql.SQLOutput;
@@ -51,8 +53,21 @@ public class UserDaoImpl extends EntityManagerJPA implements UserDao {
     }
 
     @Override
-    public void joinGroup(User user) {
+    public void joinGroup(User user, Group group) {
+        user.addToGroup(group);
+        transaction.begin();
+        em.persist(user);
+        transaction.commit();
+        em.clear();
+    }
 
+    @Override
+    public void addDietTypes(User user, List<DietType> dietTypes) {
+        user.addDietTypes(dietTypes);
+        transaction.begin();
+        em.persist(user);
+        transaction.commit();
+        em.clear();
     }
 
     @Override
