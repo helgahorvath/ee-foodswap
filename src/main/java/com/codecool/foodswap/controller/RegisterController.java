@@ -1,6 +1,8 @@
 package com.codecool.foodswap.controller;
 
 import com.codecool.foodswap.config.TemplateEngineUtil;
+import com.codecool.foodswap.dao.UserDao;
+import com.codecool.foodswap.dao.implementation.UserDaoImpl;
 import com.codecool.foodswap.model.User;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -35,14 +37,17 @@ public class RegisterController extends HttpServlet {
         context = new WebContext(req, resp, req.getServletContext());
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
 
+        UserDao userDao = UserDaoImpl.getInstance();
+
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
 
-        User user = new User();
-        user.setFirstName(req.getParameter("first_name"));
-        user.setLastName(req.getParameter("last_name"));
-        user.setEmail(req.getParameter("email"));
-        user.setPassword(req.getParameter("password"));
+        User user = new User(req.getParameter("first_name"),
+                            req.getParameter("last_name"),
+                            req.getParameter("email"),
+                            req.getParameter("password"));
+
+        userDao.add(user);
 
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
@@ -54,5 +59,6 @@ public class RegisterController extends HttpServlet {
         context.setVariable("errorMessages", errorMessages);
         engine.process("register.html", context, resp.getWriter());
         }
-//    }
+
+
 }

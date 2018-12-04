@@ -1,5 +1,7 @@
 package com.codecool.foodswap.model;
 
+import com.codecool.foodswap.util.Bcrypt;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +35,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.password = Bcrypt.hashPassword(password);
     }
 
     public User(){
