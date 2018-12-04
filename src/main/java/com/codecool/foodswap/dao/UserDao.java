@@ -14,4 +14,5 @@ public interface UserDao {
     void joinGroup(User user, Group group);
     void addDietTypes(User user, List<DietType> dietTypes);
     User getUserById(int Id);
+    List<User> getAllUser();
 }

@@ -78,5 +78,13 @@ public class UserDaoImpl extends EntityManagerJPA implements UserDao {
         return user;
     }
 
+    @Override
+    public List<User> getAllUser() {
+        List<User> users = em.createQuery(
+                "SELECT u FROM users u", User.class)
+                .getResultList();
+        return users;
+    }
+
 
 }
