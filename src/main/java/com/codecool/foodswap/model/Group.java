@@ -1,9 +1,12 @@
 package com.codecool.foodswap.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Set;
 
 @Entity(name= "groups")
 public class Group {
@@ -11,22 +14,27 @@ public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(unique = true, nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "groupList")
-    private List<User> userList= new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "groups_users",
+            joinColumns = {@JoinColumn(name = "group_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")})
+    private Set<User> users = new HashSet<>();
 
-    public Group(String name) {
+    public Group(String name, User creator) {
         this.name = name;
+        this.users.add(creator);
     }
 
     public Group(){}
 
     public void removeUserFromGroup(User user){
-        for (User u: userList) {
+        for (User u: users) {
             if(u.getId() == user.getId()){
-                userList.remove(u);
+                users.remove(u);
             }
         }
     }
@@ -36,16 +44,16 @@ public class Group {
        return "Group{" +
                "id=" + id +
                ", name='" + name + '\'' +
-               ", userList=" + userList +
+               ", userList=" + users +
                '}';
    }
 
-    public List<User> getUserList() {
-        return userList;
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setUserList(List<User> toAdd) {
-        this.userList = toAdd;
+    public void setUsers(Set<User> toAdd) {
+        this.users = toAdd;
     }
 
     public String getName() {
