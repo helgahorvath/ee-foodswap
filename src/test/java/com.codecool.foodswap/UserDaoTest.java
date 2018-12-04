@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.persistence.EntityManagerFactory;
 import java.io.IOException;
 
 import static org.mockito.Mockito.*;
@@ -15,12 +16,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UserDaoTest {
 
-    private UserDaoImpl userDaoImpl;
+     private UserDaoImpl userDaoImpl;
     private User user;
 
     @BeforeEach
     void setUp() {
-        userDaoImpl = mock(UserDaoImpl.class);
+        userDaoImpl = UserDaoImpl.getInstance();
         user = new User("Robert", "Katona", "emailemil@gmail.com","123onetwothree");
     }
 
@@ -28,7 +29,8 @@ public class UserDaoTest {
     void testUserDaoAddUser() throws IOException {
         boolean result = true;
         userDaoImpl.add(user);
-        //boolean isAddSuccesfull = userDaoImpl.verifyUser("emailemil@gmail.com", "123onetwothree");
+//        User userFromTestDB = userDaoImpl.getUserById(1);
+//        assertEquals(user.getId(), userFromTestDB.getId());
     }
 
     @AfterEach
