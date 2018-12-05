@@ -65,7 +65,7 @@ public class UserDaoImpl extends EntityManagerJPA implements UserDao {
     public void addDietTypes(User user, List<DietType> dietTypes) {
         user.addDietTypes(dietTypes);
         transaction.begin();
-        em.persist(user);
+        em.merge(user);
         transaction.commit();
         em.clear();
     }

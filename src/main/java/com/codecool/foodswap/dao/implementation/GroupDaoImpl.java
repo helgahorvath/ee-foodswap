@@ -64,4 +64,13 @@ public class GroupDaoImpl extends EntityManagerJPA implements GroupDao {
                 "SELECT g FROM groups g WHERE g.id = :id", Group.class)
                 .setParameter("id", Id).getSingleResult();
     }
+
+    @Override
+    public List<Group> getAllGroupByUserId(int Id) {
+        return em.createQuery("select g \n" +
+                        "from groups g \n" +
+                        "join g.users u\n" +
+                        "where u.id = :Id"
+                ).setParameter("Id", Id).getResultList();
+    }
 }
