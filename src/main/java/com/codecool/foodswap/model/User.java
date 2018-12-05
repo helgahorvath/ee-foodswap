@@ -36,7 +36,6 @@ public class User {
     private String userImg;
     private int upVotes;
     private Rank rank = Rank.KITCHEN_HELPER;
-    /* private List<Food> foodsOffered = new ArrayList<>();*/
     @ManyToMany(mappedBy = "users", cascade = CascadeType.PERSIST)
     private Set<Group> groups = new HashSet<>();
 
@@ -66,10 +65,6 @@ public class User {
 
     public void changeRank(Rank rank) {
         this.rank = rank;
-    }
-
-    public void offerFood(String name, String foodImg, DietType dietType, String description) {
-        this.foodsOffered.add(new Food());
     }
 
     public void joinGroup(Group group) {
