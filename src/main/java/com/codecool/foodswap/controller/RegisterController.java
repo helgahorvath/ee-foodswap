@@ -51,9 +51,9 @@ public class RegisterController extends HttpServlet {
 
         Set<ConstraintViolation<RegistrationForm>> violations = validator.validate(form);
 
+        UserDao userDao = UserDaoImpl.getInstance();
 
-        if (violations.isEmpty()) {
-            UserDao userDao = UserDaoImpl.getInstance();
+        if (violations.isEmpty() && (userDao.checkIfEmailExisting(req.getParameter("email")))) {
 
             User user = new User(req.getParameter("first_name"),
                     req.getParameter("last_name"),
@@ -68,6 +68,5 @@ public class RegisterController extends HttpServlet {
         }
 
     }
-
 
 }

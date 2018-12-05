@@ -78,5 +78,16 @@ public class UserDaoImpl extends EntityManagerJPA implements UserDao {
         return user;
     }
 
+    @Override
+    public boolean checkIfEmailExisting(String email) {
+        try {
+            User user = em.createQuery(
+                    "SELECT u FROM users u WHERE u.email LIKE :email", User.class)
+                    .setParameter("email", email).getSingleResult();
+        } catch(javax.persistence.NoResultException e) {
+            return true;
+        }
 
+        return false;
+    }
 }

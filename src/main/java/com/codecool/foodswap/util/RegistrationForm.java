@@ -17,7 +17,7 @@ public class RegistrationForm {
     @Email(message = "Enter a valid e-mail address!")
     private String email;
 
-    @Size(min = 8, message = "Password must be at least 8 characters long!")
+    @Size(min = 5, message = "Password must be at least 5 characters long!")
     private String password;
 
     private String password2;
