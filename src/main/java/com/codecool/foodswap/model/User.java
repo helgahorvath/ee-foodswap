@@ -8,6 +8,9 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,8 +29,10 @@ public class User {
     private String lastName;
 
     @Column(unique = true)
+    @NotBlank(message = "Enter a valid e-mail address.")
     private String email;
 
+    @Size(min = 5, message = "Password must be at least 5 characters long.")
     private String password;
 
     @Enumerated
@@ -45,6 +50,7 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = Bcrypt.hashPassword(password);
+
     }
 
     public User(){

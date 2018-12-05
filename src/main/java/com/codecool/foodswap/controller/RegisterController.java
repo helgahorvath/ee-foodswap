@@ -4,6 +4,7 @@ import com.codecool.foodswap.config.TemplateEngineUtil;
 import com.codecool.foodswap.dao.UserDao;
 import com.codecool.foodswap.dao.implementation.UserDaoImpl;
 import com.codecool.foodswap.model.User;
+import com.codecool.foodswap.util.RegistrationForm;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -37,28 +38,36 @@ public class RegisterController extends HttpServlet {
         context = new WebContext(req, resp, req.getServletContext());
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
 
-        UserDao userDao = UserDaoImpl.getInstance();
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
 
-        User user = new User(req.getParameter("first_name"),
-                            req.getParameter("last_name"),
-                            req.getParameter("email"),
-                            req.getParameter("password"));
+        RegistrationForm form = new RegistrationForm();
+        form.setFirstName(req.getParameter("first_name"));
+        form.setLastName(req.getParameter("last_name"));
+        form.setEmail(req.getParameter("email"));
+        form.setPassword(req.getParameter("password"));
+        form.setPassword2(req.getParameter("password2"));
 
-        userDao.add(user);
+        Set<ConstraintViolation<RegistrationForm>> violations = validator.validate(form);
 
-        Set<ConstraintViolation<User>> violations = validator.validate(user);
 
-//        if (violations.isEmpty()) {
-//            UserDaoDb.getInstance().add(new User(form.getUsername(), form.getEmail(), form.getPassword()));
-//            resp.sendRedirect("/");
-//        } else {
+        if (violations.isEmpty()) {
+            UserDao userDao = UserDaoImpl.getInstance();
+
+            User user = new User(req.getParameter("first_name"),
+                    req.getParameter("last_name"),
+                    req.getParameter("email"),
+                    req.getParameter("password"));
+            userDao.add(user);
+            resp.sendRedirect("/");
+        } else {
         String[] errorMessages = violations.stream().map(ConstraintViolation::getMessage).toArray(String[]::new);
         context.setVariable("errorMessages", errorMessages);
         engine.process("register.html", context, resp.getWriter());
         }
+
+    }
 
 
 }
