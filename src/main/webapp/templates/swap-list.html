@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body  {
+            background-image: url("/static/img/main.jpg");
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>List of foods</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/style/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="transparent">
+    <div class="outer">
+        <div class="inner">
+            <h1>Let's start swapping!</h1>
+            <form action="/list">
+                <label for="f-name">The food you offer</label><br>
+                <input type="text" id="f-name">
+                <p><label for="f-diet">Diet types</label></p>
+                <ul id="f-diet">
+                    <li><input type="checkbox" name="vegan">Vegan</li>
+                    <li><input type="checkbox" name="gl-free">Gluten-free</li>
+                    <li><input type="checkbox" name="sugar-free">Sugar-free</li>
+                </ul>
+                <label for="f-desc">Food description</label><br>
+                <textarea rows="5" cols="50" id="f-desc"></textarea><br>
+                <label for="f-img">Image url</label><br>
+                <input type="text" id="f-img"><br><br>
+                <button class="button" type="submit">Request swap</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!--<div class="col-sm-4 shadow-lg p-3" th:each="food,iterStat : ${foods}">
+    <h5 class="card-title" th:text="${food.name}">Product name</h5>
+</div>-->
+</body>
+</html>
