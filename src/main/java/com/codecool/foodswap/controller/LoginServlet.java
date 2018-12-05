@@ -2,20 +2,28 @@ package com.codecool.foodswap.controller;
 
 import com.codecool.foodswap.dao.UserDao;
 import com.codecool.foodswap.dao.implementation.UserDaoImpl;
+import com.codecool.foodswap.model.Group;
+import com.google.gson.Gson;
 import org.json.JSONObject;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.sql.Connection;
 
 
 public class LoginServlet extends HttpServlet {
      private String name;
      private String jsonResp;
+     private URL url;
+     private HttpURLConnection connection;
 
     public LoginServlet(String name) {
         this.name = name;
@@ -23,8 +31,14 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        jsonResp = "{\"render:\" \"true\"}";
-        resp.getWriter().write(jsonResp);
+        jsonResp = "{\"render:\"true}";
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.addHeader("Access-Control-Allow-Origin", "*");
+        resp.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
+        resp.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
+        resp.addHeader("Access-Control-Max-Age", "1728000");
+
     }
 
 
