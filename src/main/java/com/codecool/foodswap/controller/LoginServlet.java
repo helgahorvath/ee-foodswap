@@ -31,14 +31,15 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        jsonResp = "{\"render:\"true}";
+        jsonResp = "{\"render\":true}";
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         resp.addHeader("Access-Control-Allow-Origin", "*");
         resp.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
         resp.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
         resp.addHeader("Access-Control-Max-Age", "1728000");
-
+        resp.getWriter().write(jsonResp);
+        resp.getWriter().flush();
     }
 
 
