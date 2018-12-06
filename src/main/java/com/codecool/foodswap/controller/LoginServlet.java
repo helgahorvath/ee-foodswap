@@ -22,8 +22,6 @@ import java.sql.Connection;
 public class LoginServlet extends HttpServlet {
      private String name;
      private String jsonResp;
-     private URL url;
-     private HttpURLConnection connection;
 
     public LoginServlet(String name) {
         this.name = name;
@@ -31,7 +29,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        jsonResp = "{\"render\":true}";
+        jsonResp = "{\"render\":\"Hello\"}";
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         resp.addHeader("Access-Control-Allow-Origin", "*");
@@ -45,6 +43,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        System.out.println("logging in");
         HttpSession session = req.getSession();
         StringBuffer jb = new StringBuffer();
         String line;
@@ -55,14 +54,20 @@ public class LoginServlet extends HttpServlet {
         } catch (Exception e) { /*report an error*/ }
         JSONObject loginDetails = new JSONObject(jb.toString());
         UserDao userDao  = UserDaoImpl.getInstance();
-        int uId = userDao.verifyUser(loginDetails.getString("user_name"), loginDetails.getString("password"));
-        System.out.println(uId);
-        if (req.getParameter("login-email") != null && uId > 0) {
+        int uId = userDao.verifyUser(loginDetails.getString("email"), loginDetails.getString("password"));
+        if (uId > 0) {
             session.setAttribute("uId", uId);
-            resp.sendRedirect("/index");
-        } else {
-            jsonResp = "{\"login:\" \" Failed\"}";
+            jsonResp = "{\"login\": true}";
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
             resp.getWriter().write(jsonResp);
+            resp.getWriter().flush();
+        } else {
+            jsonResp = "{\"login\": false}";
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
+            resp.getWriter().write(jsonResp);
+            resp.getWriter().flush();
         }
     }
 }

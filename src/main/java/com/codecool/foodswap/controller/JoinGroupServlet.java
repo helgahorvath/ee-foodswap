@@ -42,8 +42,8 @@ public class JoinGroupServlet extends HttpServlet {
             String searchedGroup = new JSONObject(jb.toString()).getString("searched_group_name");
             for (Group group: groupDao.findByName(searchedGroup)) {
                 String jsonGroup = "{" +
-                        "\"group_name:\" \"" + group.getName() + "\"," +
-                        "\"group_id:\" \"" + group.getId() + "\"}";
+                        "\"group_name\": \"" + group.getName() + "\"," +
+                        "\"group_id\": \"" + group.getId() + "\"}";
                 resultGroups.add(jsonGroup);
             }
         }

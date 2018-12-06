@@ -19,7 +19,6 @@ import java.util.List;
 
 public class IndexServlet extends HttpServlet {
     private GroupDaoImpl groupDao = GroupDaoImpl.getInstance();
-    private HttpSession session;
     private String name;
 
     public IndexServlet(String name) {
@@ -29,13 +28,14 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         List<String> resultGroups = new ArrayList<>();
-        session = req.getSession();
-        int uId = (Integer) session.getAttribute("uId");
+        HttpSession session = req.getSession();
+        System.out.println(session.getAttribute("uId"));
+        int uId = 1; //(Integer) session.getAttribute("uId");
         List<Group> groupdOfUser = groupDao.getAllGroupByUserId(uId);
         for (Group group : groupdOfUser) {
             String jsonGroup = "{" +
-                    "\"group_name:\" \"" + group.getName() + "\"," +
-                    "\"group_id:\" \"" + group.getId() + "\"}";
+                    "\"group_name\": \"" + group.getName() + "\"," +
+                    "\"group_id\": \"" + group.getId() + "\"}";
             resultGroups.add(jsonGroup);
         }
         resp.getWriter().write(resultGroups.toString());
