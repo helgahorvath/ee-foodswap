@@ -18,6 +18,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Set;
 
 
@@ -60,11 +61,24 @@ public class RegisterController extends HttpServlet {
                     req.getParameter("email"),
                     req.getParameter("password"));
             userDao.add(user);
-            resp.sendRedirect("/");
+
+            String jsonRegistration = "{" +
+                    "\"Registration:\" " + "\"successful!\"}";
+
+            resp.getWriter().write(jsonRegistration);
+
+
         } else {
+
         String[] errorMessages = violations.stream().map(ConstraintViolation::getMessage).toArray(String[]::new);
         context.setVariable("errorMessages", errorMessages);
         engine.process("register.html", context, resp.getWriter());
+
+        String jsonRegistration = "{" +
+                "\"Registration:\" " + "\"unsuccessful!\"}";
+
+            resp.getWriter().write(jsonRegistration);
+
         }
 
     }
