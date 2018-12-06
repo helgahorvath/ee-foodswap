@@ -2,10 +2,15 @@ package com.codecool.foodswap.model;
 
 import org.hibernate.annotations.Cascade;
 
+import com.codecool.foodswap.util.Bcrypt;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -24,8 +29,10 @@ public class User {
     private String lastName;
 
     @Column(unique = true)
+    @NotBlank(message = "Enter a valid e-mail address.")
     private String email;
 
+    @Size(min = 5, message = "Password must be at least 5 characters long.")
     private String password;
 
     @Enumerated
@@ -34,7 +41,6 @@ public class User {
     private String userImg;
     private int upVotes;
     private Rank rank = Rank.KITCHEN_HELPER;
-    /* private List<Food> foodsOffered = new ArrayList<>();*/
     @ManyToMany(mappedBy = "users", cascade = CascadeType.PERSIST)
     private Set<Group> groups = new HashSet<>();
 
@@ -43,7 +49,8 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.password = Bcrypt.hashPassword(password);
+
     }
 
     public User(){
@@ -66,7 +73,6 @@ public class User {
         this.rank = rank;
     }
 
-
     public void joinGroup(Group group) {
         this.groups.add(group);
     }
@@ -75,7 +81,20 @@ public class User {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }

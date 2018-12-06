@@ -23,9 +23,9 @@
             <property name="javax.persistence.schema-generation.scripts.drop-target" value="src/main/resources/META-INF/drop-schema.ddl"/>
 
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/foodswap"/>
-            <property name="javax.persistence.jdbc.user" value="mac"/>
-            <property name="javax.persistence.jdbc.password" value="macmacpw"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/foodswapDB"/>
+            <property name="javax.persistence.jdbc.user" value="szilard"/>
+            <property name="javax.persistence.jdbc.password" value="szilardpost48"/>
             <!--<property name="javax.persistence.sql-load-script-source" value="insert.sql"/>-->
         </properties>
     </persistence-unit>
