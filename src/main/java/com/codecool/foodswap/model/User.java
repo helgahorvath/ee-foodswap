@@ -79,5 +79,7 @@ public class User {
         return firstName;
     }
 
-
+    public Set<Group> getGroups() {
+        return groups;
+    }
 }

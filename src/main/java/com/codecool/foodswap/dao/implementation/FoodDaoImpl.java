@@ -4,6 +4,7 @@ import com.codecool.foodswap.dao.FoodDao;
 import com.codecool.foodswap.model.Food;
 import com.codecool.foodswap.model.Group;
 
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,13 @@ public class FoodDaoImpl extends EntityManagerJPA implements FoodDao {
 
     private FoodDaoImpl() {
         super();
+    }
+
+    @Override
+    public void truncateTable(String tableName) {
+        String stringQuery = "TRUNCATE TABLE " + tableName + " CASCADE;";
+        Query query = em.createNativeQuery(stringQuery);
+        query.executeUpdate();
     }
 
     @Override

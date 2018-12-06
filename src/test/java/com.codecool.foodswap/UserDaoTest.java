@@ -5,7 +5,6 @@ import com.codecool.foodswap.dao.implementation.UserDaoImpl;
 import com.codecool.foodswap.model.Group;
 import com.codecool.foodswap.model.User;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -29,6 +28,7 @@ public class UserDaoTest {
     @BeforeEach
     void setUp() {
         userDaoImpl = UserDaoImpl.getInstance();
+        groupDaoImpl = GroupDaoImpl.getInstance();
         testUser1 = new User("Test1", "Test1", "testemailemil1@gmail.com","123onetwothree1");
         testUser2 = new User("Test2", "Test2", "testemailemil2@gmail.com","123onetwothree2");
         testCreator1 = new User("Creator1", "Creator1", "creatoremailemil3@gmail.com","123onetwothree3");
@@ -36,6 +36,7 @@ public class UserDaoTest {
         userDaoImpl.add(testUser2);
         userDaoImpl.add(testCreator1);
         testGroup1 = new Group("Testgroup1", testCreator1);
+        groupDaoImpl.add(testGroup1);
 
     }
 
@@ -71,12 +72,16 @@ public class UserDaoTest {
 
     @Test
     void testUserDaoJoinGroup() {
+        assertFalse(testUser1.getGroups().contains(testGroup1));
         testUser1.joinGroup(testGroup1);
-
+        assertTrue(testUser1.getGroups().contains(testGroup1));
 
     }
+
     @AfterEach
     void tearDown() {
-
+        dropTable("users");
+        dropTable("groups");
+        dropTable("groups_users");
     }
 }

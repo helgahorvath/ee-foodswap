@@ -1,9 +1,6 @@
 package com.codecool.foodswap.dao.implementation;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 
 public abstract class EntityManagerJPA {
     private EntityManagerFactory emf;
@@ -16,7 +13,7 @@ public abstract class EntityManagerJPA {
 //        transaction = em.getTransaction();
 //    }
 
-    EntityManagerJPA(){
+    EntityManagerJPA() {
         emf = Persistence.createEntityManagerFactory("food_swap_test");
         em = emf.createEntityManager();
         transaction = em.getTransaction();
@@ -29,4 +26,10 @@ public abstract class EntityManagerJPA {
     public void setEmf(String testDB) {
         emf = Persistence.createEntityManagerFactory(testDB);
     }
+
+    public EntityTransaction getTransaction() {
+        return transaction;
+    }
+
+    public abstract void truncateTable(String tableName);
 }

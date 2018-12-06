@@ -5,6 +5,7 @@ import com.codecool.foodswap.model.DietType;
 import com.codecool.foodswap.model.Group;
 import com.codecool.foodswap.model.User;
 
+import javax.persistence.Query;
 import java.sql.SQLOutput;
 import java.util.List;
 
@@ -21,6 +22,13 @@ public class UserDaoImpl extends EntityManagerJPA implements UserDao {
 
     private UserDaoImpl() {
         super();
+    }
+
+    @Override
+    public void truncateTable(String tableName) {
+        String stringQuery = "TRUNCATE TABLE " + tableName + " CASCADE;";
+        Query query = em.createNativeQuery(stringQuery);
+        query.executeUpdate();
     }
 
     @Override

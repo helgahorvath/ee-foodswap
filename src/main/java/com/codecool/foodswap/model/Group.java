@@ -1,5 +1,7 @@
 package com.codecool.foodswap.model;
 
+import com.codecool.foodswap.dao.implementation.GroupDaoImpl;
+import com.codecool.foodswap.dao.implementation.UserDaoImpl;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -18,7 +20,7 @@ public class Group {
     @Column(unique = true, nullable = false)
     private String name;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(name = "groups_users",
             joinColumns = {@JoinColumn(name = "group_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
@@ -63,4 +65,6 @@ public class Group {
     public int getId() {
         return id;
     }
+
+
 }

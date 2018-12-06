@@ -4,6 +4,7 @@ import com.codecool.foodswap.dao.GroupDao;
 import com.codecool.foodswap.model.Group;
 import com.codecool.foodswap.model.User;
 
+import javax.persistence.Query;
 import java.util.List;
 import java.util.Set;
 
@@ -16,6 +17,13 @@ public class GroupDaoImpl extends EntityManagerJPA implements GroupDao {
 
     private GroupDaoImpl() {
         super();
+    }
+
+    @Override
+    public void truncateTable(String tableName) {
+        String stringQuery = "TRUNCATE TABLE " + tableName + " CASCADE;";
+        Query query = em.createNativeQuery(stringQuery);
+        query.executeUpdate();
     }
 
     @Override
