@@ -12,5 +12,5 @@ public interface GroupDao {
     List<Group> findByName(String name);
     void addUserToGroup(User user, Group group);
     Group findById(int Id);
-
+    List<Group> getAllGroupByUserId(int Id);
 }

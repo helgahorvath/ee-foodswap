@@ -65,7 +65,7 @@ public class UserDaoImpl extends EntityManagerJPA implements UserDao {
     public void addDietTypes(User user, List<DietType> dietTypes) {
         user.addDietTypes(dietTypes);
         transaction.begin();
-        em.persist(user);
+        em.merge(user);
         transaction.commit();
         em.clear();
     }
@@ -78,5 +78,16 @@ public class UserDaoImpl extends EntityManagerJPA implements UserDao {
         return user;
     }
 
+    @Override
+    public boolean checkIfEmailExisting(String email) {
+        try {
+            em.createQuery(
+                    "SELECT u FROM users u WHERE u.email LIKE :email", User.class)
+                    .setParameter("email", email).getSingleResult();
+        } catch(javax.persistence.NoResultException e) {
+            return true;
+        }
 
+        return false;
+    }
 }

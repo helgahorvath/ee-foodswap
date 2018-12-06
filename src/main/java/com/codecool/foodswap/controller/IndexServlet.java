@@ -1,6 +1,10 @@
 package com.codecool.foodswap.controller;
 
 import com.codecool.foodswap.config.TemplateEngineUtil;
+import com.codecool.foodswap.dao.implementation.FoodDaoImpl;
+import com.codecool.foodswap.dao.implementation.GroupDaoImpl;
+import com.codecool.foodswap.model.Group;
+import org.json.JSONObject;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -10,11 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class IndexServlet extends HttpServlet {
-    private WebContext context;
-    /*private FoodDaoImpl foodDao = FoodDaoImpl.getInstance();
-    private GroupDaoImpl groupDao = GroupDaoImpl.getInstance();*/
+    private GroupDaoImpl groupDao = GroupDaoImpl.getInstance();
     private HttpSession session;
     private String name;
 
@@ -24,13 +28,16 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        List<String> resultGroups = new ArrayList<>();
         session = req.getSession();
-        session.getAttribute("uId");
-        System.out.println(session.getAttribute("uId"));
-        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
-        context = new WebContext(req, resp, req.getServletContext());
-       /* context.setVariable("foods", foodDao.getAllFoodByGroup(groupDao.findByName("My office")));*/
-        engine.process("swap-list.html", context, resp.getWriter());
+        int uId = (Integer) session.getAttribute("uId");
+        List<Group> groupdOfUser = groupDao.getAllGroupByUserId(uId);
+        for (Group group : groupdOfUser) {
+            String jsonGroup = "{" +
+                    "\"group_name:\" \"" + group.getName() + "\"," +
+                    "\"group_id:\" \"" + group.getId() + "\"}";
+            resultGroups.add(jsonGroup);
+        }
+        resp.getWriter().write(resultGroups.toString());
     }
-
 }
