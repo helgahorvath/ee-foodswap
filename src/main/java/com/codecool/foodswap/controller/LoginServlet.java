@@ -2,21 +2,16 @@ package com.codecool.foodswap.controller;
 
 import com.codecool.foodswap.dao.UserDao;
 import com.codecool.foodswap.dao.implementation.UserDaoImpl;
-import com.codecool.foodswap.model.Group;
-import com.google.gson.Gson;
+import com.codecool.foodswap.util.Bcrypt;
 import org.json.JSONObject;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.sql.Connection;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 
 public class LoginServlet extends HttpServlet {
@@ -54,6 +49,7 @@ public class LoginServlet extends HttpServlet {
         } catch (Exception e) { /*report an error*/ }
         JSONObject loginDetails = new JSONObject(jb.toString());
         UserDao userDao  = UserDaoImpl.getInstance();
+        String password = Bcrypt.hashPassword(loginDetails.getString("password"));
         int uId = userDao.verifyUser(loginDetails.getString("email"), loginDetails.getString("password"));
         if (uId > 0) {
             session.setAttribute("uId", uId);

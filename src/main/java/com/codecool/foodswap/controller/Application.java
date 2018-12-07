@@ -14,6 +14,7 @@ public class Application implements ServletContextListener {
         context.addServlet("index", new IndexServlet("index")).addMapping("/groups");
         context.addServlet("creategroup", new CreateGroupServlet("cr_group")).addMapping("/create_group");
         context.addServlet("joingroup", new JoinGroupServlet("jn_group")).addMapping("/join_group");
+        context.addServlet("registration", new RegisterServlet("registration")).addMapping("/registration");
     }
 
     @Override
