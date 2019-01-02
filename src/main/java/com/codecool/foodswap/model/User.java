@@ -38,6 +38,7 @@ public class User {
     @Enumerated
     @ElementCollection(targetClass = DietType.class)
     private List<DietType> dietTypes = new ArrayList<>();
+
     private String userImg;
     private int upVotes;
     private Rank rank = Rank.KITCHEN_HELPER;
