@@ -1,4 +1,7 @@
 package com.codecool.foodswap.repositories;
 
-public interface GroupRepository {
+import com.codecool.foodswap.model.Group;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface GroupRepository extends JpaRepository<Group, Integer> {
 }
