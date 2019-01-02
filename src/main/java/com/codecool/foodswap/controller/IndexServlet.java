@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IndexServlet extends HttpServlet {
-    private GroupDaoImpl groupDao = GroupDaoImpl.getInstance();
+    private GroupDaoImpl groupDao = GroupDaoImpl.getInstance(); // not DI!!
     private String name;
 
     public IndexServlet(String name) {

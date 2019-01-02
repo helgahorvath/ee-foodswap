@@ -21,8 +21,8 @@ import java.util.List;
 public class JoinGroupServlet extends HttpServlet {
     private List<String> resultGroups = new ArrayList<>();
     private String name;
-    private GroupDao groupDao = GroupDaoImpl.getInstance();
-    private UserDao userDao = UserDaoImpl.getInstance();
+    private GroupDao groupDao = GroupDaoImpl.getInstance(); // NOT DI!!!!
+    private UserDao userDao = UserDaoImpl.getInstance(); // NOT DI!!!!
     private HttpSession session;
 
     public JoinGroupServlet(String name) {

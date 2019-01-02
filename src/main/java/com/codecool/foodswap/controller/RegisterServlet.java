@@ -4,7 +4,6 @@ import com.codecool.foodswap.config.TemplateEngineUtil;
 import com.codecool.foodswap.dao.UserDao;
 import com.codecool.foodswap.dao.implementation.UserDaoImpl;
 import com.codecool.foodswap.model.User;
-import com.codecool.foodswap.util.RegistrationForm;
 import org.json.JSONObject;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -39,7 +38,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("in reg");
-        UserDao userDao = UserDaoImpl.getInstance();
+        UserDao userDao = UserDaoImpl.getInstance(); // NOT DI!!!!
         StringBuffer jb = new StringBuffer();
         String line;
         try {

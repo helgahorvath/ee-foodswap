@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
                 jb.append(line);
         } catch (Exception e) { /*report an error*/ }
         JSONObject loginDetails = new JSONObject(jb.toString());
-        UserDao userDao  = UserDaoImpl.getInstance();
+        UserDao userDao  = UserDaoImpl.getInstance(); // NOT DI!!!!
         String password = Bcrypt.hashPassword(loginDetails.getString("password"));
         int uId = userDao.verifyUser(loginDetails.getString("email"), loginDetails.getString("password"));
         if (uId > 0) {
