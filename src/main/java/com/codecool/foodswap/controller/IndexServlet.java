@@ -1,12 +1,7 @@
 package com.codecool.foodswap.controller;
 
-import com.codecool.foodswap.config.TemplateEngineUtil;
-import com.codecool.foodswap.dao.implementation.FoodDaoImpl;
 import com.codecool.foodswap.dao.implementation.GroupDaoImpl;
 import com.codecool.foodswap.model.Group;
-import org.json.JSONObject;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.WebContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

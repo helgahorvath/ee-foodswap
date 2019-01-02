@@ -1,27 +1,17 @@
 package com.codecool.foodswap.controller;
 
-import com.codecool.foodswap.config.TemplateEngineUtil;
 import com.codecool.foodswap.dao.UserDao;
 import com.codecool.foodswap.dao.implementation.UserDaoImpl;
 import com.codecool.foodswap.model.User;
 import org.json.JSONObject;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.WebContext;
+
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Set;
-
 
 public class RegisterServlet extends HttpServlet {
     private String name;
