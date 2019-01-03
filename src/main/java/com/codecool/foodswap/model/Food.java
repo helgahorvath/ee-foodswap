@@ -25,9 +25,12 @@ public class Food {
     @OneToOne
     private User owner;
 
+    @ManyToOne
+    private Group group;
+
     public Food(){}
 
-    public Food(String name, String foodIMG, List<DietType> dietTypes, String description, User owner) {
+    public Food(String name, String foodIMG, List<DietType> dietTypes, String description, User owner, Group group) {
         this.name = name;
         this.foodIMG = foodIMG;
        /* this.dietTypes = dietTypes;*/
@@ -36,6 +39,7 @@ public class Food {
         this.Description = description;
         this.dietTypes = dietTypes;
         this.owner = owner;
+        this.group = group;
     }
 
     public static LocalDate getLocalDate() {
