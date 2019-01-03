@@ -23,6 +23,8 @@ public class Group {
             joinColumns = {@JoinColumn(name = "group_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
     private Set<User> users = new HashSet<>();
+    @OneToMany
+    private Set<Food> foods = new HashSet<>();
 
     public Group(String name, User creator) {
         this.name = name;
