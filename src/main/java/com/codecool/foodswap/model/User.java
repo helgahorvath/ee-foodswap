@@ -42,7 +42,7 @@ public class User {
     private String userImg;
     private int upVotes;
     private Rank rank = Rank.KITCHEN_HELPER;
-    @ManyToMany(mappedBy = "users", cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "users", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private Set<Group> groups = new HashSet<>();
 
 
@@ -51,7 +51,6 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-
     }
 
     public User(){
@@ -59,6 +58,7 @@ public class User {
     }
 
     public void addDietType(DietType dietType) {
+        this.dietTypes.add(dietType);
 
     }
 
@@ -66,9 +66,6 @@ public class User {
         this.dietTypes.addAll(dietTypes);
     }
 
-    public void addToGroup(Group group) {
-        this.groups.add(group);
-    }
 
     public void changeRank(Rank rank) {
         this.rank = rank;
@@ -76,6 +73,13 @@ public class User {
 
     public void joinGroup(Group group) {
         this.groups.add(group);
+    }
+
+    public void joinGroup(Group group, boolean add) {
+        this.groups.add(group);
+        if (group != null && add) {
+            group.addUser(this, false);
+        }
     }
 
     public int getId() {
@@ -98,4 +102,7 @@ public class User {
         this.password = password;
     }
 
+    public Set<Group> getGroups() {
+        return groups;
+    }
 }
