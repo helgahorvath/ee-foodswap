@@ -1,8 +1,7 @@
-package com.codecool.foodswap.dao;
+package com.codecool.foodswap.service;
 
 import com.codecool.foodswap.model.Food;
 import com.codecool.foodswap.model.Group;
-import com.codecool.foodswap.model.User;
 import com.codecool.foodswap.repositories.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class FoodDao {
+public class FoodService {
 
     @Autowired
     private FoodRepository foodRepository;
