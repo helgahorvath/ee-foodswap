@@ -18,10 +18,10 @@ public class Group {
     @Column(unique = true, nullable = false)
     private String name;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "groups_users",
             joinColumns = {@JoinColumn(name = "group_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<>();
     @OneToMany
     private Set<Food> foods = new HashSet<>();
@@ -29,6 +29,7 @@ public class Group {
     public Group(String name, User creator) {
         this.name = name;
         this.users.add(creator);
+        creator.joinGroup(this, true);
     }
 
     public Group(){}
@@ -54,8 +55,15 @@ public class Group {
         return users;
     }
 
-    public void setUsers(Set<User> toAdd) {
-        this.users = toAdd;
+    public void addUser(User userToAdd) {
+        this.users.add(userToAdd);
+    }
+
+    public void addUser(User userToAdd, boolean add) {
+        this.users.add(userToAdd);
+        if (userToAdd != null && add) {
+            userToAdd.joinGroup(this, false);
+        }
     }
 
     public String getName() {
