@@ -70,13 +70,21 @@ public class Food {
         this.foodIMG = foodIMG;
     }
 
-/*    public List<DietType> getDietTypes() {
+   public List<DietType> getDietTypes() {
         return dietTypes;
     }
 
     public void setDietTypes(List<DietType> dietTypes) {
         this.dietTypes = dietTypes;
-    }*/
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
 
     public LocalDate getDate() {
         return date;
