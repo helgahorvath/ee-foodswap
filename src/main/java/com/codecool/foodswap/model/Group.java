@@ -70,6 +70,10 @@ public class Group {
         return name;
     }
 
+    public Set<Food> getFoods() {
+        return foods;
+    }
+
     public int getId() {
         return id;
     }
