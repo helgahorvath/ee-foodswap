@@ -55,6 +55,7 @@ public class ListFoodsREST {
     public String listFoods() {
         //TODO
         return "";
+    }
   
     @GetMapping(path="/groups")
     public List<GroupDTO> listFoods(HttpSession session) {
