@@ -42,8 +42,10 @@ public class AuthorizationREST {
         User userByEmailFromDB = userRepository.findUserByEmail(loginUser.getEmail());
         boolean verifyPassword = Bcrypt.verifyPassword(loginUser.getPassword(), userByEmailFromDB.getPassword());
         if (verifyPassword) {
-            return "Login successful";
+            System.out.println("Login Successful");
+            return "Login Successful";
         }
+        System.out.println("Login Failed");
         return "Login Failed";
     }
 }
