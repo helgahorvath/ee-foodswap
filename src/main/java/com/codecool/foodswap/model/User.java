@@ -2,7 +2,7 @@ package com.codecool.foodswap.model;
 
 import org.hibernate.annotations.Cascade;
 
-import com.codecool.foodswap.util.Bcrypt;
+//import com.codecool.foodswap.util.Bcrypt;
 
 import javax.persistence.*;
 import javax.persistence.Entity;

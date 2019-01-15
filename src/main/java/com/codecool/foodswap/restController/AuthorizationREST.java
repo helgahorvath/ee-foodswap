@@ -18,12 +18,13 @@ public class AuthorizationREST {
 
     @GetMapping("/")
     public String startingPage() {
+        return "d";
     }
 
     @PostMapping("/register")
     public String registerUser(@RequestParam User user) {
         userRepository.save(user);
-        return ;
+        return "e";
 
     }
 }

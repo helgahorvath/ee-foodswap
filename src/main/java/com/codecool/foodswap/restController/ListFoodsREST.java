@@ -18,7 +18,7 @@ public class ListFoodsREST {
     }
 
     @GetMapping("/{userId}")
-    public JSONObject listFoods() {
-        //TODO
+    public String listFoods() {
+        return "f";
     }
 }
