@@ -7,6 +7,7 @@ import com.codecool.foodswap.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 
 @Component
@@ -16,8 +17,14 @@ public class UserService {
     private UserRepository userRepository;
 
     public void add(User user) {
-        userRepository.save(user);
-        userRepository.flush();
+        boolean userAlreadyRegister = checkIfEmailExisting(user);
+        if (!userAlreadyRegister) {
+            userRepository.save(user);
+            userRepository.flush();
+            System.out.println("Registration DONE");
+        } else {
+            System.out.println("Registration DENIED");
+        }
     }
 
     public void remove(User user) {
@@ -42,5 +49,10 @@ public class UserService {
         userFromDb.joinGroup(group, true);
     }
 
- //   public boolean checkIfEmailExisting(String email);
+    public boolean checkIfEmailExisting(User userWhoWantsToRegister) {
+        String email = userWhoWantsToRegister.getEmail();
+        User userByEmail = userRepository.findUserByEmail(email);
+        if (userByEmail != null) {return true;}
+        return false;
+    }
 }

@@ -26,8 +26,8 @@ public class AuthorizationREST {
 
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public void processRegistrationForm(@RequestBody User user) {
-        User newUser = new User(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
-       userService.add(newUser);
+    public void processRegistrationForm(@RequestBody User registerUser) {
+        User newUser = new User(registerUser.getFirstName(), registerUser.getLastName(), registerUser.getEmail(), registerUser.getPassword());
+        userService.add(newUser);
     }
 }
