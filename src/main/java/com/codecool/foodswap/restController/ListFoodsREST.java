@@ -51,6 +51,12 @@ public class ListFoodsREST {
         this.foodRepository = foodRepository;
     }
 
+    @GetMapping("/{userId}")
+    public String listFoods() {
+        //TODO
+        return "";
+    }
+  
     @GetMapping(path="/groups")
     public List<GroupDTO> listFoods(HttpSession session) {
 

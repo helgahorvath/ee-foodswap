@@ -57,6 +57,42 @@ public class User {
 
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public List<DietType> getDietTypes() {
+        return dietTypes;
+    }
+
+    public void setDietTypes(List<DietType> dietTypes) {
+        this.dietTypes = dietTypes;
+    }
+
+    public String getUserImg() {
+        return userImg;
+    }
+
+    public void setUserImg(String userImg) {
+        this.userImg = userImg;
+    }
+
     public void addDietType(DietType dietType) {
         this.dietTypes.add(dietType);
 
