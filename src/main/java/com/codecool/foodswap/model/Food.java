@@ -33,7 +33,6 @@ public class Food {
     public Food(String name, String foodIMG, List<DietType> dietTypes, String description, User owner, Group group) {
         this.name = name;
         this.foodIMG = foodIMG;
-       /* this.dietTypes = dietTypes;*/
         this.date = getLocalDate();
         this.expDate = date.plusDays(2);
         this.Description = description;

@@ -45,6 +45,7 @@ public class Initializer {
         kajak.add(DietType.GLUTENFREE);
         kajak.add(DietType.LACTOSEFREE);
 
+
         Food newfood = new Food("etel", "kep",  kajak, "ez a leiras", newuser, newgroup);
         Food masikfood = new Food("kaja", "nemkep", kajak, "leiras", masikuser, masikgroup);
 

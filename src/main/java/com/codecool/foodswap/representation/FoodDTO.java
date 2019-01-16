@@ -1,20 +1,11 @@
 package com.codecool.foodswap.representation;
 
 import com.codecool.foodswap.model.DietType;
-import com.codecool.foodswap.model.Food;
-import com.codecool.foodswap.model.Group;
-import com.codecool.foodswap.service.FoodService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FoodDTO {
-
-    @Autowired
-    private FoodService foodService;
-
 
     private String name;
     private String description;
@@ -32,19 +23,66 @@ public class FoodDTO {
         this.ownerId = ownerId;
     }
 
-    public List<FoodDTO> foodsByGroup (Group group) {
-        List<FoodDTO> FoodDTO = new ArrayList<>();
+    public FoodDTO() {
+    }
 
-        for(Food food : foodService.getAllFoodByGroup(group)) {
-            this.name = food.getName();
-            this.description = food.getDescription();
-            this.foodIMG = food.getFoodIMG();
-            this.expDate = food.getExpDate();
-            this.dietTypes = food.getDietTypes();
-            this.ownerId = food.getOwner().getId();
-            FoodDTO foodDTO = new FoodDTO(name,description,foodIMG,dietTypes,expDate,ownerId);
-            FoodDTO.add(foodDTO);
-        }
-        return FoodDTO;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getFoodIMG() {
+        return foodIMG;
+    }
+
+    public void setFoodIMG(String foodIMG) {
+        this.foodIMG = foodIMG;
+    }
+
+    public List<DietType> getDietTypes() {
+        return dietTypes;
+    }
+
+    public void setDietTypes(List<DietType> dietTypes) {
+        this.dietTypes = dietTypes;
+    }
+
+    public LocalDate getExpDate() {
+        return expDate;
+    }
+
+    public void setExpDate(LocalDate expDate) {
+        this.expDate = expDate;
+    }
+
+    public Integer getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    @Override
+    public String toString() {
+        return "FoodDTO{" +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", foodIMG='" + foodIMG + '\'' +
+                ", dietTypes=" + dietTypes +
+                ", expDate=" + expDate +
+                ", ownerId=" + ownerId +
+                '}';
     }
 }
