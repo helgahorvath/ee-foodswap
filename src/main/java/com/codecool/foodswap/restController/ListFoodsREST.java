@@ -17,13 +17,9 @@ import java.util.List;
 @RestController
 public class ListFoodsREST {
 
-    private GroupRepository groupRepository;
-    private FoodRepository foodRepository;
     private FoodService foodService;
 
-    public ListFoodsREST(GroupRepository groupRepository, FoodRepository foodRepository, FoodService foodService) {
-        this.groupRepository = groupRepository;
-        this.foodRepository = foodRepository;
+    public ListFoodsREST(FoodService foodService) {
         this.foodService = foodService;
     }
 
@@ -33,7 +29,7 @@ public class ListFoodsREST {
         return new JSONObject("{'dddd':234}");
     }
 
-    @GetMapping(value = "/get_food_by_diet_type")
+    @GetMapping("/get-food-by-diet-type")
     public List<FoodDTO> foodsByDietType(@RequestParam String dietTypes) {
         return foodService.getFoodByDietTypes(DietType.valueOf(dietTypes.toUpperCase()));
     }
@@ -42,5 +38,16 @@ public class ListFoodsREST {
     @GetMapping("/search")
     public List<FoodDTO> foodsByName(@RequestParam String name) {
         return foodService.getFoodByName(name);
+    }
+
+
+    @PutMapping("/update/{id}")
+    public void updateFoodNameById(@RequestParam("name") String name, @PathVariable("id") long foodId){
+        foodService.updateFood(name,foodId);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteFoodById(@PathVariable("id") long foodId) {
+        foodService.deleteFood(foodId);
     }
 }

@@ -69,5 +69,21 @@ public class FoodService {
     }
 
 
+    public void updateFood(String name ,Long id) {
+        Food food = foodRepository.findById(id).get();
+        food.setName(name);
+        foodRepository.save(food);
+
+    }
+
+
+    public void deleteFood(Long id) {
+       foodRepository.deleteById(id);
+    }
+
+
+
+
+
 
 }
