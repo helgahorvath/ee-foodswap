@@ -110,6 +110,16 @@ public class Food {
         Description = description;
     }
 
+    public User getOwner() {
+        return owner;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+
+
     @Override
     public String toString() {
         return "Food{" +
@@ -123,12 +133,4 @@ public class Food {
                 ", owner=" + owner +
                 '}';
     }
-
-   /* public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }*/
 }

@@ -20,16 +20,6 @@ public class AuthorizationREST {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/")
-    public String startingPage() {
-        return "Index Page";
-    }
-
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String registration() {
-        return "Registration";
-    }
-
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void processRegistrationForm(@RequestBody User registerUser) {
