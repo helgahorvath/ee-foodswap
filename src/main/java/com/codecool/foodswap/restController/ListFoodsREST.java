@@ -35,8 +35,6 @@ public class ListFoodsREST {
 
     @GetMapping(value = "/get_food_by_diet_type")
     public List<FoodDTO> foodsByDietType(@RequestParam String dietTypes) {
-        System.out.println(dietTypes);
-        DietType dietType1 = DietType.LACTOSEFREE;
-        return foodService.getFoodByDietTypes(dietType1);
+        return foodService.getFoodByDietTypes(DietType.valueOf(dietTypes.toUpperCase()));
     }
 }

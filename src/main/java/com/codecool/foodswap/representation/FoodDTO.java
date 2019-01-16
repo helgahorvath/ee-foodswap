@@ -10,11 +10,11 @@ public class FoodDTO {
     private String name;
     private String description;
     private String foodIMG;
-    private List<DietType> dietTypes;
+    private DietType dietTypes;
     private LocalDate expDate;
     private Integer ownerId;
 
-    public FoodDTO(String name, String description, String foodIMG, List<DietType> dietTypes, LocalDate expDate, Integer ownerId) {
+    public FoodDTO(String name, String description, String foodIMG, DietType dietTypes, LocalDate expDate, Integer ownerId) {
         this.name = name;
         this.description = description;
         this.foodIMG = foodIMG;
@@ -50,11 +50,11 @@ public class FoodDTO {
         this.foodIMG = foodIMG;
     }
 
-    public List<DietType> getDietTypes() {
+    public DietType getDietTypes() {
         return dietTypes;
     }
 
-    public void setDietTypes(List<DietType> dietTypes) {
+    public void setDietTypes(DietType dietTypes) {
         this.dietTypes = dietTypes;
     }
 
