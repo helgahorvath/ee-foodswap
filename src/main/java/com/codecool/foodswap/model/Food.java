@@ -9,7 +9,7 @@ public class Food {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long foodId;
+    private int foodId;
     @Column(name = "name")
     private String name;
     @Column(name = "picture")
@@ -46,11 +46,11 @@ public class Food {
         return LocalDate.now();
     }
 
-    public long getFoodId() {
+    public int getFoodId() {
         return foodId;
     }
 
-    public void setFoodId(long foodId) {
+    public void setFoodId(int foodId) {
         this.foodId = foodId;
     }
 
@@ -76,6 +76,14 @@ public class Food {
 
     public void setDietTypes(List<DietType> dietTypes) {
         this.dietTypes = dietTypes;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public LocalDate getDate() {
