@@ -70,13 +70,13 @@ public class Food {
         this.foodIMG = foodIMG;
     }
 
-/*    public List<DietType> getDietTypes() {
+   public List<DietType> getDietTypes() {
         return dietTypes;
     }
 
     public void setDietTypes(List<DietType> dietTypes) {
         this.dietTypes = dietTypes;
-    }*/
+    }
 
     public LocalDate getDate() {
         return date;
@@ -102,6 +102,16 @@ public class Food {
         Description = description;
     }
 
+    public User getOwner() {
+        return owner;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+
+
     @Override
     public String toString() {
         return "Food{" +
@@ -115,12 +125,4 @@ public class Food {
                 ", owner=" + owner +
                 '}';
     }
-
-   /* public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }*/
 }

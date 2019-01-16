@@ -5,6 +5,7 @@ import com.codecool.foodswap.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 public class UploadFoodRest {
 
@@ -16,9 +17,10 @@ public class UploadFoodRest {
         foodService.add(food);
     }
 
-    @PostMapping("/uploadfood")
+    @PostMapping(value = "/uploadfood")
     public void addFoodForm(@RequestBody Food food) {
-        addFood(food);
+        Food newFood = new Food(food.getName(), food.getFoodIMG(), food.getDietTypes(), food.getDescription(), food.getOwner(), food.getGroup());
+        addFood(newFood);
     }
 
 }
