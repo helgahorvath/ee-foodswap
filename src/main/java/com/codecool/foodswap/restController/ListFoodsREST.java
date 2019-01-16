@@ -37,4 +37,10 @@ public class ListFoodsREST {
     public List<FoodDTO> foodsByDietType(@RequestParam String dietTypes) {
         return foodService.getFoodByDietTypes(DietType.valueOf(dietTypes.toUpperCase()));
     }
+
+
+    @GetMapping("/search")
+    public List<FoodDTO> foodsByName(@RequestParam String name) {
+        return foodService.getFoodByName(name);
+    }
 }

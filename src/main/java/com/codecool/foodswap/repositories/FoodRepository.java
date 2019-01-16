@@ -12,4 +12,6 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
     List<Food> findFoodsByGroup(Group group);
 
     List<Food> findFoodsByDietTypes(DietType dietType);
+
+    List<Food> findFoodsByNameContaining(String name);
 }

@@ -58,5 +58,16 @@ public class FoodService {
     }
 
 
+    public List<FoodDTO> getFoodByName(String name) {
+        List<FoodDTO> foodDTOS = new ArrayList<>();
+
+        for (Food food : foodRepository.findFoodsByNameContaining(name)) {
+            FoodDTO foodDTO = new FoodDTO(food.getName(),food.getDescription(),food.getFoodIMG(),food.getDietTypes(),food.getExpDate(),food.getOwner().getId());
+            foodDTOS.add(foodDTO);
+        }
+        return foodDTOS;
+    }
+
+
 
 }
