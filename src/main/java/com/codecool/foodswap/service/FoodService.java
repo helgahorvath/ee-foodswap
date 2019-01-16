@@ -2,9 +2,9 @@ package com.codecool.foodswap.service;
 
 import com.codecool.foodswap.model.Food;
 import com.codecool.foodswap.model.Group;
+import com.codecool.foodswap.model.User;
 import com.codecool.foodswap.repositories.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +26,10 @@ public class FoodService {
 
     public List<Food> getAllFoodByGroup(Group group) {
         return foodRepository.findFoodsByGroup(group);
+    }
+
+    public List<Food> getAllFoodByUser(User user) {
+        return foodRepository.findFoodsByOwner(user);
     }
 
 

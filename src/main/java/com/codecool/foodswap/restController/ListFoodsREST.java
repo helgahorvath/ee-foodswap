@@ -1,25 +1,29 @@
 package com.codecool.foodswap.restController;
 
-import com.codecool.foodswap.repositories.FoodRepository;
-import com.codecool.foodswap.repositories.GroupRepository;
-import com.codecool.foodswap.repositories.UserRepository;
-import org.json.JSONObject;
+import com.codecool.foodswap.model.Food;
+import com.codecool.foodswap.model.User;
+import com.codecool.foodswap.service.FoodService;
+import com.codecool.foodswap.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
+@RestController
 public class ListFoodsREST {
 
-    private GroupRepository groupRepository;
-    private FoodRepository foodRepository;
 
+    @Autowired
+    private FoodService foodService;
 
-    public ListFoodsREST(GroupRepository groupRepository, FoodRepository foodRepository) {
-        this.groupRepository = groupRepository;
-        this.foodRepository = foodRepository;
-    }
+    @Autowired
+    private UserService userService;
 
-    @GetMapping("/{userId}")
-    public String listFoods() {
-        //TODO
-        return "aaaa";
+    @GetMapping("/get-food-by-user/{userId}")
+    public List<Food> listFoodsByUser(@PathVariable String userId) {
+        User user = userService.getUserById(Integer.parseInt(userId));
+        return foodService.getAllFoodByUser(user);
     }
 }
