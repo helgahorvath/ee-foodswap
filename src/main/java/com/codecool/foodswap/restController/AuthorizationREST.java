@@ -42,10 +42,11 @@ public class AuthorizationREST {
         return "Login";
     }
 
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"}, allowCredentials = "true")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String processLogin(@RequestBody User loginUser) {
-        User userByEmailFromDB = userRepository.findUserByEmail(loginUser.getEmail());
-        boolean verifyPassword = Bcrypt.verifyPassword(loginUser.getPassword(), userByEmailFromDB.getPassword());
+    public String processLogin(@RequestBody User user) {
+        User userByEmailFromDB = userRepository.findUserByEmail(user.getEmail());
+        boolean verifyPassword = Bcrypt.verifyPassword (user.getPassword(), userByEmailFromDB.getPassword());
         if (verifyPassword) {
             System.out.println("Login Successful");
             return "Login Successful";
