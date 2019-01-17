@@ -45,7 +45,7 @@ public class ListFoodsREST {
     }
 
     @GetMapping("/get-food-by-user/{userId}")
-    public List<Food> listFoodsByUser(@PathVariable String userId) {
+    public List<FoodDTO> listFoodsByUser(@PathVariable String userId) {
         User user = userService.getUserById(Integer.parseInt(userId));
         return foodService.getAllFoodByUser(user);
     }

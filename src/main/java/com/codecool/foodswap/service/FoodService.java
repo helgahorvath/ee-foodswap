@@ -38,6 +38,10 @@ public class FoodService {
         return foodRepository.findFoodsByDietTypes(diettype);
     }
 
+    public List<Food> getFoodByOwner(User user) {
+        return foodRepository.findFoodsByOwner(user);
+    }
+
 
     public List<FoodDTO> foodsByGroup (Group group) {
         List<FoodDTO> foodDTO = new ArrayList<>();
@@ -74,7 +78,6 @@ public class FoodService {
         Food food = foodRepository.findById(id).get();
         food.setName(name);
         foodRepository.save(food);
-
     }
 
 
@@ -83,11 +86,13 @@ public class FoodService {
     }
 
 
-
-
-
-    public List<Food> getAllFoodByUser(User user) {
-        return foodRepository.findFoodsByOwner(user);
+    public List<FoodDTO> getAllFoodByUser(User user) {
+        List<FoodDTO> foodList = new ArrayList<>();
+        for (Food food : getFoodByOwner(user)) {
+            FoodDTO foodDTO = new FoodDTO(food.getName(),food.getDescription(),food.getFoodIMG(),food.getDietTypes(),food.getExpDate(),food.getOwner().getId());
+            foodList.add(foodDTO);
+        }
+        return foodList;
     }
 
 

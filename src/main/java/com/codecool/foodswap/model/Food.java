@@ -25,11 +25,9 @@ public class Food {
     private String Description;
 
     @OneToOne
-    @JsonIgnore
     private User owner;
 
     @ManyToOne
-    @JsonIgnore
     private Group group;
 
     public Food(){}
