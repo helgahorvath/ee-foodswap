@@ -27,8 +27,8 @@ public class Initializer {
     @PostConstruct
     public void init() {
 
-        User newuser = new User("Józsi", "Kovács", "mail", "jelszo");
-        User masikuser = new User("Béla", "Szabó", "email", "masikjelszo");
+        User newuser = new User("Józsi", "Kovács", "mail", Bcrypt.hashPassword("jelszo"));
+        User masikuser = new User("Béla", "Szabó", "email", Bcrypt.hashPassword("masikjelszo"));
         userService.add(newuser);
         userService.add(masikuser);
 

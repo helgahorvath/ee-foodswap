@@ -6,24 +6,44 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-//
-//@RestController
-//public class AuthorizationREST {
 
-//    private UserRepository userRepository;
+import com.codecool.foodswap.service.UserService;
+import com.codecool.foodswap.util.Bcrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-//    private AuthorizationREST (UserRepository userRepository) {
-//        this.userRepository = userRepository;
-//    }
 
-//    @GetMapping("/")
-//    public String startingPage() {
-//    }
+    @Autowired
+    private UserRepository userRepository;
 
-//    @PostMapping("/register")
-//    public String registerUser(@RequestParam User user) {
-//        userRepository.save(user);
-//        return ;
-//
-//    }
-//}
+    @Autowired
+    private UserService userService;
+
+    private AuthorizationREST (UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public void processRegistrationForm(@RequestBody User registerUser) {
+        User newUser = new User(registerUser.getFirstName(), registerUser.getLastName(), registerUser.getEmail(), Bcrypt.hashPassword(registerUser.getPassword()));
+        userService.add(newUser);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String showLogin() {
+        return "Login";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String processLogin(@RequestBody User loginUser) {
+        User userByEmailFromDB = userRepository.findUserByEmail(loginUser.getEmail());
+        boolean verifyPassword = Bcrypt.verifyPassword(loginUser.getPassword(), userByEmailFromDB.getPassword());
+        if (verifyPassword) {
+            System.out.println("Login Successful");
+            return "Login Successful";
+        }
+        System.out.println("Login Failed");
+        return "Login Failed";
+    }
+}

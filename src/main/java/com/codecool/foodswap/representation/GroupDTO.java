@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 public class GroupDTO {
 
     @Autowired
-    private GroupService groupService;
+    private transient GroupService groupService;
 
 
-    private int id;
-    private String name;
-    private Set<Integer> users;
-    private Set<Integer> foods;
+    public int id;
+    public String name;
+    public Set<Integer> users;
+    public Set<Integer> foods;
 
 
     public GroupDTO representGroup(int id) {

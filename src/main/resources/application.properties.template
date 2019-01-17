@@ -1,8 +1,0 @@
-spring.jpa.database=postgresql
-spring.jpa.show-sql=false
-
-
-spring.datasource.url=jdbc:postgresql://localhost:5432/foodswap
-spring.datasource.username=
-spring.datasource.password=
-spring.jpa.hibernate.ddl-auto=create-drop
