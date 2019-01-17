@@ -41,12 +41,9 @@ public class Initializer {
         userService.joinGroup(newuser, newgroup);
         userService.joinGroup(masikuser, masikgroup);
 
-        List<DietType> kajak = new ArrayList<>();
-        kajak.add(DietType.GLUTENFREE);
-        kajak.add(DietType.LACTOSEFREE);
 
-        Food newfood = new Food("etel", "kep",  kajak, "ez a leiras", newuser, newgroup);
-        Food masikfood = new Food("kaja", "nemkep", kajak, "leiras", masikuser, masikgroup);
+        Food newfood = new Food("etel", "kep", DietType.GLUTENFREE , "ez a leiras", newuser, newgroup);
+        Food masikfood = new Food("kaja", "nemkep",DietType.LACTOSEFREE, "leiras", masikuser, masikgroup);
 
         foodService.add(newfood);
         foodService.add(masikfood);

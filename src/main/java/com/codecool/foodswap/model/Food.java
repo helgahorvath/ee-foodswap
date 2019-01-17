@@ -15,8 +15,7 @@ public class Food {
     @Column(name = "picture")
     private String foodIMG;
     @Enumerated
-    @ElementCollection(targetClass = DietType.class)
-    private List<DietType> dietTypes;
+    private DietType dietTypes;
     private LocalDate date;
     @Column(name = "expiration_date")
     private LocalDate expDate;
@@ -30,10 +29,9 @@ public class Food {
 
     public Food(){}
 
-    public Food(String name, String foodIMG, List<DietType> dietTypes, String description, User owner, Group group) {
+    public Food(String name, String foodIMG, DietType dietTypes, String description, User owner, Group group) {
         this.name = name;
         this.foodIMG = foodIMG;
-       /* this.dietTypes = dietTypes;*/
         this.date = getLocalDate();
         this.expDate = date.plusDays(2);
         this.Description = description;
@@ -70,11 +68,11 @@ public class Food {
         this.foodIMG = foodIMG;
     }
 
-   public List<DietType> getDietTypes() {
+    public DietType getDietTypes() {
         return dietTypes;
     }
 
-    public void setDietTypes(List<DietType> dietTypes) {
+    public void setDietTypes(DietType dietTypes) {
         this.dietTypes = dietTypes;
     }
 
