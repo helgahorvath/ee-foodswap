@@ -76,9 +76,6 @@ public class Food {
         this.dietTypes = dietTypes;
     }
 
-    public User getOwner() {
-        return owner;
-    }
 
     public void setOwner(User owner) {
         this.owner = owner;

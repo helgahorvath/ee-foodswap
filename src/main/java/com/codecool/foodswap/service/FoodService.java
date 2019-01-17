@@ -70,7 +70,7 @@ public class FoodService {
     }
 
 
-    public void updateFood(String name ,Long id) {
+    public void updateFood(String name ,int id) {
         Food food = foodRepository.findById(id).get();
         food.setName(name);
         foodRepository.save(food);
@@ -78,7 +78,7 @@ public class FoodService {
     }
 
 
-    public void deleteFood(Long id) {
+    public void deleteFood(int id) {
        foodRepository.deleteById(id);
     }
 

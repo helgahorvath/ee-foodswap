@@ -2,10 +2,7 @@ package com.codecool.foodswap.restController;
 
 import com.codecool.foodswap.model.User;
 import com.codecool.foodswap.repositories.UserRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 
 import com.codecool.foodswap.service.UserService;
 import com.codecool.foodswap.util.Bcrypt;
@@ -13,13 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
+@Component
+public class AuthorizationREST{
+
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
     private UserService userService;
 
-    private AuthorizationREST (UserRepository userRepository) {
+    public AuthorizationREST (UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

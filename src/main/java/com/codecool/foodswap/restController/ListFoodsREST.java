@@ -55,18 +55,19 @@ public class ListFoodsREST {
     @Autowired
     private FoodService foodService;
 
+    public ListFoodsREST(GroupRepository groupRepository, FoodRepository foodRepository, UserRepository userRepository) {
+        this.groupRepository = groupRepository;
+        this.foodRepository = foodRepository;
+        this.userRepository = userRepository;
+    }
 
-
+    public ListFoodsREST() {
+    }
 
     public ListFoodsREST(FoodService foodService) {
         this.foodService = foodService;
     }
 
-    @GetMapping("/list_foods/{userId}")
-    public JSONObject listFoods() {
-        //TODO
-        return new JSONObject("{'dddd':234}");
-    }
 
     @GetMapping("/get-food-by-diet-type")
     public List<FoodDTO> foodsByDietType(@RequestParam String dietTypes) {
@@ -81,19 +82,13 @@ public class ListFoodsREST {
 
 
     @PutMapping("/update/{id}")
-    public void updateFoodNameById(@RequestParam("name") String name, @PathVariable("id") long foodId){
+    public void updateFoodNameById(@RequestParam("name") String name, @PathVariable("id") int foodId){
         foodService.updateFood(name,foodId);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteFoodById(@PathVariable("id") long foodId) {
+    public void deleteFoodById(@PathVariable("id") int foodId) {
         foodService.deleteFood(foodId);
-      
-    @GetMapping("/{userId}")
-    public String listFoods() {
-        //TODO
-     
-        return "";
     }
   
     @GetMapping(path="/groups")
