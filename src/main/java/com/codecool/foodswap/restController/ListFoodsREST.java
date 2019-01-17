@@ -3,35 +3,18 @@ package com.codecool.foodswap.restController;
 import com.codecool.foodswap.model.DietType;
 import com.codecool.foodswap.model.Food;
 import com.codecool.foodswap.model.Group;
-import com.codecool.foodswap.repositories.FoodRepository;
-import com.codecool.foodswap.repositories.GroupRepository;
-import com.codecool.foodswap.repositories.UserRepository;
 import com.codecool.foodswap.representation.FoodDTO;
 import com.codecool.foodswap.service.FoodService;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import com.codecool.foodswap.representation.GroupDTO;
-import com.codecool.foodswap.service.FoodService;
 import com.codecool.foodswap.service.UserService;
-import com.codecool.foodswap.model.Food;
-import com.codecool.foodswap.model.Group;
 import com.codecool.foodswap.model.User;
-import com.codecool.foodswap.repositories.FoodRepository;
-import com.codecool.foodswap.repositories.GroupRepository;
-import com.codecool.foodswap.repositories.UserRepository;
-import com.google.gson.Gson;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
@@ -41,27 +24,13 @@ import java.util.*;
 public class ListFoodsREST {
 
 
-    private GroupRepository groupRepository;
-
-
-    private FoodRepository foodRepository;
-
-    private UserRepository userRepository;
-
     @Autowired
     private UserService userService;
     @Autowired
     private FoodService foodService;
-
     @Autowired
     private GroupDTO groupDTO;
 
-
-    public ListFoodsREST(GroupRepository groupRepository, FoodRepository foodRepository, UserRepository userRepository) {
-        this.groupRepository = groupRepository;
-        this.foodRepository = foodRepository;
-        this.userRepository = userRepository;
-    }
 
     public ListFoodsREST() {
     }
@@ -69,7 +38,6 @@ public class ListFoodsREST {
     public ListFoodsREST(FoodService foodService) {
         this.foodService = foodService;
     }
-
 
     @GetMapping("/get-food-by-diet-type")
     public List<FoodDTO> foodsByDietType(@RequestParam String dietTypes) {
