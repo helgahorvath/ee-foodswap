@@ -28,7 +28,7 @@ public class GroupDTO {
         this.id = group.getId();
         this.name = group.getName();
         this.users = group.getUsers().stream().mapToInt(User::getId).boxed().collect(Collectors.toSet());
-        this.foods = group.getFoods().stream().mapToInt(Food::getFoodId).boxed().collect(Collectors.toSet());
+//        this.foods = group.getFoods().stream().mapToInt(Food::getFoodId).boxed().collect(Collectors.toSet());
         return this;
     }
 
