@@ -56,8 +56,6 @@ public class ListFoodsREST {
     @Autowired
     private GroupDTO groupDTO;
 
-    @Autowired
-    private FoodService foodService;
 
     public ListFoodsREST(GroupRepository groupRepository, FoodRepository foodRepository, UserRepository userRepository) {
         this.groupRepository = groupRepository;
@@ -78,6 +76,11 @@ public class ListFoodsREST {
         return foodService.getFoodByDietTypes(DietType.valueOf(dietTypes.toUpperCase()));
     }
 
+    @GetMapping("/get-food-by-user/{userId}")
+    public List<Food> listFoodsByUser(@PathVariable String userId) {
+        User user = userService.getUserById(Integer.parseInt(userId));
+        return foodService.getAllFoodByUser(user);
+    }
 
     @GetMapping("/search")
     public List<FoodDTO> foodsByName(@RequestParam String name) {
@@ -105,14 +108,10 @@ public class ListFoodsREST {
         Set<Group> groupsOfUser = newuser.getGroups();
         List<GroupDTO> representedGroups = new ArrayList<>();
 
-        for (Group group: groupsOfUser) {
+        for (Group group : groupsOfUser) {
             representedGroups.add(groupDTO.representGroup(group.getId()));
         }
 
         return representedGroups;
-    @GetMapping("/get-food-by-user/{userId}")
-    public List<Food> listFoodsByUser(@PathVariable String userId) {
-        User user = userService.getUserById(Integer.parseInt(userId));
-        return foodService.getAllFoodByUser(user);
     }
 }
