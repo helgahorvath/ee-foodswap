@@ -24,6 +24,7 @@ public class AuthorizationREST{
     }
 
 
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"}, allowCredentials = "true")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void processRegistrationForm(@RequestBody User registerUser) {
         User newUser = new User(registerUser.getFirstName(), registerUser.getLastName(), registerUser.getEmail(), Bcrypt.hashPassword(registerUser.getPassword()));
