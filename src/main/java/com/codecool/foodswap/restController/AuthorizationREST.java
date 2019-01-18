@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-@Component
+@RestController
 public class AuthorizationREST{
 
     @Autowired
@@ -24,6 +24,7 @@ public class AuthorizationREST{
     }
 
 
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"}, allowCredentials = "true")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void processRegistrationForm(@RequestBody User registerUser) {
         User newUser = new User(registerUser.getFirstName(), registerUser.getLastName(), registerUser.getEmail(), Bcrypt.hashPassword(registerUser.getPassword()));
@@ -35,10 +36,11 @@ public class AuthorizationREST{
         return "Login";
     }
 
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"}, allowCredentials = "true")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String processLogin(@RequestBody User loginUser) {
-        User userByEmailFromDB = userRepository.findUserByEmail(loginUser.getEmail());
-        boolean verifyPassword = Bcrypt.verifyPassword(loginUser.getPassword(), userByEmailFromDB.getPassword());
+    public String processLogin(@RequestBody User user) {
+        User userByEmailFromDB = userRepository.findUserByEmail(user.getEmail());
+        boolean verifyPassword = Bcrypt.verifyPassword (user.getPassword(), userByEmailFromDB.getPassword());
         if (verifyPassword) {
             System.out.println("Login Successful");
             return "Login Successful";
