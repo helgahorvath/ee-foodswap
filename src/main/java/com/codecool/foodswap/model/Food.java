@@ -1,5 +1,7 @@
 package com.codecool.foodswap.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -21,6 +23,7 @@ public class Food {
     private LocalDate expDate;
     @Column(name = "description")
     private String Description;
+
     @OneToOne
     private User owner;
 

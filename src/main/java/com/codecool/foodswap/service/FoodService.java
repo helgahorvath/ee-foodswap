@@ -3,10 +3,10 @@ package com.codecool.foodswap.service;
 import com.codecool.foodswap.model.DietType;
 import com.codecool.foodswap.model.Food;
 import com.codecool.foodswap.model.Group;
+import com.codecool.foodswap.model.User;
 import com.codecool.foodswap.repositories.FoodRepository;
 import com.codecool.foodswap.representation.FoodDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -36,6 +36,10 @@ public class FoodService {
 
     public List<Food> getFoodByDietType(DietType diettype) {
         return foodRepository.findFoodsByDietTypes(diettype);
+    }
+
+    public List<Food> getFoodByOwner(User user) {
+        return foodRepository.findFoodsByOwner(user);
     }
 
 
@@ -74,7 +78,6 @@ public class FoodService {
         Food food = foodRepository.findById(id).get();
         food.setName(name);
         foodRepository.save(food);
-
     }
 
 
@@ -83,8 +86,14 @@ public class FoodService {
     }
 
 
-
-
+    public List<FoodDTO> getAllFoodByUser(User user) {
+        List<FoodDTO> foodList = new ArrayList<>();
+        for (Food food : getFoodByOwner(user)) {
+            FoodDTO foodDTO = new FoodDTO(food.getName(),food.getDescription(),food.getFoodIMG(),food.getDietTypes(),food.getExpDate(),food.getOwner().getId());
+            foodList.add(foodDTO);
+        }
+        return foodList;
+    }
 
 
 }
